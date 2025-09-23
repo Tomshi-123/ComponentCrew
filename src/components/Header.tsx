@@ -11,14 +11,10 @@ export default function Header() {
     <Box
       sx={{
         backgroundColor: "#001428cb",
-        width: "95%",
+        width: "100%",
         height: "auto",
-
         color: "white",
         padding: "2rem",
-        marginLeft: "auto",
-        marginRight: "auto",
-
         display: "flex",
         justifyContent: "space-between",
       }}

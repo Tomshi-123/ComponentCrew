@@ -53,6 +53,7 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
         display: "flex",
         justifyContent: "flex-end",
         alignItems: "flex-end",
+        paddingRight: "4rem",
       }}
     >
       {/* Dold filinput – visas inte men hanterar filval */}
@@ -72,8 +73,6 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
             background: "transparent",
             border: "1px solid green",
             borderRadius: "10px",
-            marginLeft: "auto",
-            marginRight: "auto",
           }}
         >
           Ladda upp Excel
