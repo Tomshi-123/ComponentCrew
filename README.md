@@ -6,9 +6,9 @@ En modern React-app som låter användare ladda upp Excel-filer (.xlsx), visa oc
 
 ## ⚡ Funktioner
 
-- Ladda upp **.xlsx-filer** via filinput.  
-- **Redigerbar tabell** med Material React Table.  
-- Exportera tabellen till **PDF** med `jspdf` + `jspdf-autotable`.  
+- Ladda upp **.xlsx-filer** via filinput.
+- **Redigerbar tabell** med Material React Table.
+- Exportera tabellen till **PDF** med `jspdf` + `jspdf-autotable`.
 - Minimal och modulär kodbas, enkel att bygga vidare på.
 
 ---
@@ -32,10 +32,10 @@ src/
 
 Mattias
 
-Linda 
+Linda
 
 Alexander
 
-Erik 
+Erik
 
-Hanna 
+Hanna
