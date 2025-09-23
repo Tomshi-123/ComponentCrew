@@ -4,6 +4,7 @@ import "@fontsource/roboto/700.css";
 import "@fontsource/orbitron/400.css";
 import FileImport from "./FileImport";
 import { useTableData } from "../context/TableDataContext";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
 export default function Header() {
   const { setTableData } = useTableData();
@@ -25,7 +26,7 @@ export default function Header() {
           gutterBottom
           sx={{ fontFamily: "Roboto", fontSize: "3rem", fontWeight: "700" }}
         >
-          Component Crew
+          Component Crew <RocketLaunchIcon></RocketLaunchIcon>
         </Typography>
         <Typography
           variant="h3"
