@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/orbitron": "^5.2.8",
+    "@fontsource/roboto": "^5.2.8",
     "@mui/material": "^7.3.2",
     "exceljs": "^4.4.0",
     "jspdf": "^3.0.3",
