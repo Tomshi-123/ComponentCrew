@@ -5,7 +5,7 @@ import autoTable from "jspdf-autotable";
 
 export function exportDataToPDF(
   headers: string[],
-  rows: any[][],
+  rows: Array<Array<string | number>>,
   fileName: string = "export.pdf"
 ) {
   const doc = new jsPDF();

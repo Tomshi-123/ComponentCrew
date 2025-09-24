@@ -12,7 +12,12 @@ export default function ExportButton({ data }: ButtonProps) {
   // Använder funktioner från /utils/pdfUtils.ts och /utils/excelUtils.ts.
 
   const handleExport = () => {
-    exportDataToPDF(data, "sheet-data.pdf");
+    if (data.length === 0) return;
+
+    const headers = Object.keys(data[0]);
+    const rows = data.map((row) => headers.map((header) => row[header]));
+
+    exportDataToPDF(headers, rows, "sheet-data.pdf");
   };
 
   return (
