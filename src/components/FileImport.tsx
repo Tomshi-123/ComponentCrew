@@ -1,14 +1,14 @@
-import React, { useState } from "react";
 import { Button, Box } from "@mui/material";
 import * as ExcelJS from "exceljs";
-import type { TableData } from "../types/Types";
+import type { TableData, SpaceMineData } from "../types/Types";
+import { useTableData } from "../hooks/useTableData";
 
 type FileImportProps = {
   onDataLoaded: (data: TableData) => void;
 };
 
 export default function FileImport({ onDataLoaded }: FileImportProps) {
-  const [data, setData] = useState<any[]>([]);
+  const { tableData, setTableData } = useTableData();
 
   const handleFileUpload = async (
     event: React.ChangeEvent<HTMLInputElement>
@@ -18,8 +18,6 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
 
     const workbook = new ExcelJS.Workbook();
     const arrayBuffer = await file.arrayBuffer();
-
-    // ✅ Ingen Buffer – använd direkt
     await workbook.xlsx.load(arrayBuffer);
 
     const worksheet = workbook.getWorksheet(1);
@@ -28,17 +26,24 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
       return;
     }
 
-    const newData: any[] = [];
+    const newData: SpaceMineData[] = [];
 
     worksheet.eachRow((row, rowNumber) => {
-      // Row.values innehåller [empty, col1, col2, ...]
-      // Tar bort första tomma indexet
-      const rowValues = row.values as any[];
-      newData.push(rowValues.slice(1));
+      if (rowNumber === 1) return; // Skippa header-raden
+
+      const astronaut = row.getCell(1).value?.toString().trim() || "";
+      const planet = row.getCell(2).value?.toString().trim() || "";
+      const mineral = row.getCell(3).value?.toString().trim() || "";
+      const amount = Number(row.getCell(4).value) || 0;
+
+      // Bara lägg till om det finns data
+      if (astronaut && planet && mineral) {
+        newData.push({ astronaut, planet, mineral, amount });
+      }
     });
 
-    setData(newData);
-    onDataLoaded(newData as TableData);
+    setTableData(newData);
+    onDataLoaded(newData);
   };
 
   return (
@@ -71,7 +76,7 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
           Ladda upp Excel
         </Button>
       </label>
-      {data.length > 0 && <div>Data laddad!</div>}
+      {tableData.length > 0 && <div>Data laddad!</div>}
     </Box>
   );
 }
