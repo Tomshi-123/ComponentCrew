@@ -53,7 +53,7 @@ const textGlowKeyframes = keyframes`
         <Typography
           variant="h1"
           gutterBottom
-          sx={{ fontFamily: "Roboto", fontSize: "3rem", fontWeight: "700" }}
+          sx={{ fontFamily: "Roboto", fontSize: "3rem", fontWeight: "700", color: "#5bf8b7ff",}}
         >
           Component Crew <RocketLaunchIcon></RocketLaunchIcon>
         </Typography>
