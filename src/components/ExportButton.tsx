@@ -15,8 +15,13 @@ export default function ExportButton({ data }: ButtonProps) {
   const handleExport = () => {
     if (data.length === 0) return;
 
-    const headers = Object.keys(data[0]);
-    const rows = data.map((row) => headers.map((header) => row[header]));
+    const [headersRow, ...dataRows] = data;
+
+    const headers = headersRow.map((cell) => String(cell ?? ""));
+
+    const rows = dataRows.map((row) =>
+      row.map((cell) => (cell != null ? String(cell) : ""))
+    );
 
     exportDataToPDF(headers, rows, "sheet-data.pdf");
   };

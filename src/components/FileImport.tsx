@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Box } from "@mui/material";
-import * as ExcelJS from "exceljs";
+import { parseExcelFile } from "../utils/excelUtils";
 import type { TableData } from "../types/Types";
 
 type FileImportProps = {
@@ -8,7 +8,7 @@ type FileImportProps = {
 };
 
 export default function FileImport({ onDataLoaded }: FileImportProps) {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<TableData>([]);
 
   const handleFileUpload = async (
     event: React.ChangeEvent<HTMLInputElement>
@@ -16,29 +16,13 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    const workbook = new ExcelJS.Workbook();
-    const arrayBuffer = await file.arrayBuffer();
-
-    // ✅ Ingen Buffer – använd direkt
-    await workbook.xlsx.load(arrayBuffer);
-
-    const worksheet = workbook.getWorksheet(1);
-    if (!worksheet) {
-      console.error("Inget första ark hittades i filen!");
-      return;
+    try {
+      const parsedData = await parseExcelFile(file);
+      setData(parsedData);
+      onDataLoaded(parsedData);
+    } catch (error) {
+      console.error("Fel Vid uppladdning av Excel:", error);
     }
-
-    const newData: any[] = [];
-
-    worksheet.eachRow((row, rowNumber) => {
-      // Row.values innehåller [empty, col1, col2, ...]
-      // Tar bort första tomma indexet
-      const rowValues = row.values as any[];
-      newData.push(rowValues.slice(1));
-    });
-
-    setData(newData);
-    onDataLoaded(newData as TableData);
   };
 
   return (

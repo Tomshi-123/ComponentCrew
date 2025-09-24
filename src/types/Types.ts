@@ -9,4 +9,5 @@ export type StudentGrades = {
   [key: string]: string | number;
 };
 
-export type TableData = StudentGrades[];
+//export type TableData = StudentGrades[];
+export type TableData = (string | number | boolean | Date | null)[][];
