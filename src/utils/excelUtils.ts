@@ -2,9 +2,9 @@
 
 // Import logik
 import * as ExcelJS from "exceljs";
-import type { TableData } from "../types/Types";
+import type { SpaceMineData } from "../types/Types";
 
-export async function parseExcelFile(file: File): Promise<TableData> {
+export async function parseExcelFile(file: File): Promise<SpaceMineData[]> {
   const workbook = new ExcelJS.Workbook();
   const arrayBuffer = await file.arrayBuffer();
 
@@ -16,30 +16,19 @@ export async function parseExcelFile(file: File): Promise<TableData> {
     throw new Error("Inget första ark hittades i filen!");
   }
 
-  const newData: (string | number | boolean | Date | null)[][] = [];
+  const newData: SpaceMineData[] = [];
 
-  worksheet.eachRow((row) => {
-    const values = row.values;
+  worksheet.eachRow((row, rowNumber) => {
+    if (rowNumber === 1) return;
 
-    if (!Array.isArray(values)) return;
+    const astronaut = row.getCell(1).value?.toString().trim() || "";
+    const planet = row.getCell(2).value?.toString().trim() || "";
+    const mineral = row.getCell(3).value?.toString().trim() || "";
+    const amount = Number(row.getCell(4).value) || 0;
 
-    const cleanedRow = values
-      .slice(1)
-      .map(
-        (cell: ExcelJS.CellValue): string | number | boolean | Date | null => {
-          if (
-            typeof cell === "string" ||
-            typeof cell === "number" ||
-            typeof cell === "boolean" ||
-            cell instanceof Date ||
-            cell === null
-          ) {
-            return cell;
-          }
-          return null;
-        }
-      );
-    newData.push(cleanedRow);
+    if (astronaut && planet && mineral) {
+      newData.push({ astronaut, planet, mineral, amount });
+    }
   });
 
   return newData;

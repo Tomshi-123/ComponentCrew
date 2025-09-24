@@ -15,13 +15,14 @@ export default function ExportButton({ data }: ButtonProps) {
   const handleExport = () => {
     if (data.length === 0) return;
 
-    const [headersRow, ...dataRows] = data;
+    const headers = ["Astronaut", "Mineral", "Amount", "Planet"];
 
-    const headers = headersRow.map((cell) => String(cell ?? ""));
-
-    const rows = dataRows.map((row) =>
-      row.map((cell) => (cell != null ? String(cell) : ""))
-    );
+    const rows = data.map((row) => [
+      row.astronaut ?? "",
+      row.mineral ?? "",
+      String(row.amount ?? ""),
+      row.planet ?? "",
+    ]);
 
     exportDataToPDF(headers, rows, "sheet-data.pdf");
   };

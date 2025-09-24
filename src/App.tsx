@@ -11,7 +11,10 @@ function App() {
   return (
     <Layout>
       <DataTable data={tabledata} setData={setTableData} />
-      <ExportButton />
+      <ExportButton
+        data={tabledata}
+        onClick={() => console.log("Exported to PDF")}
+      />
     </Layout>
   );
 }
