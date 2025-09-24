@@ -48,8 +48,9 @@ export default function DataTable({ data, setData }: DataTableProps) {
         marginTop: "2rem",
         color: "white",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
+        padding: "2rem",
       }}
     >
       {data.length > 0 ? (
