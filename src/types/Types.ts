@@ -1,3 +1,5 @@
+// exempel på types som. kan användas on defineras här
+
 export type StudentGrades = {
   id: string;
   name: string;

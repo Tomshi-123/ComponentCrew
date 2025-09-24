@@ -1,7 +1,7 @@
 import type { TableData } from "../types/Types";
 import { Box } from "@mui/system";
 import "@fontsource/orbitron/400.css";
-import { Typography } from "@mui/Material";
+import { Typography } from "@mui/material";
 
 type DataTableProps = {
   data: TableData;

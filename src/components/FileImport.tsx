@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Box } from "@mui/material"; // <-- litet "m" här, annars krashar import
+import { Button, Box } from "@mui/material";
 import * as ExcelJS from "exceljs";
 import type { TableData } from "../types/Types";
 

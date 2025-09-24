@@ -1,4 +1,4 @@
-import { Typography } from "@mui/Material";
+import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import "@fontsource/roboto/700.css";
 import "@fontsource/orbitron/400.css";
