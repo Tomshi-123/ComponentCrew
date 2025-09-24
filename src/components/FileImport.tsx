@@ -1,14 +1,14 @@
-import React, { useState } from "react";
 import { Button, Box } from "@mui/material";
 import { parseExcelFile } from "../utils/excelUtils";
-import type { TableData } from "../types/Types";
+import type { TableData, SpaceMineData } from "../types/Types";
+import { useTableData } from "../hooks/useTableData";
 
 type FileImportProps = {
   onDataLoaded: (data: TableData) => void;
 };
 
 export default function FileImport({ onDataLoaded }: FileImportProps) {
-  const [data, setData] = useState<TableData>([]);
+  const { tableData, setTableData } = useTableData();
 
   const handleFileUpload = async (
     event: React.ChangeEvent<HTMLInputElement>
@@ -23,6 +23,34 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
     } catch (error) {
       console.error("Fel Vid uppladdning av Excel:", error);
     }
+    const workbook = new ExcelJS.Workbook();
+    const arrayBuffer = await file.arrayBuffer();
+    await workbook.xlsx.load(arrayBuffer);
+
+    const worksheet = workbook.getWorksheet(1);
+    if (!worksheet) {
+      console.error("Inget första ark hittades i filen!");
+      return;
+    }
+
+    const newData: SpaceMineData[] = [];
+
+    worksheet.eachRow((row, rowNumber) => {
+      if (rowNumber === 1) return; // Skippa header-raden
+
+      const astronaut = row.getCell(1).value?.toString().trim() || "";
+      const planet = row.getCell(2).value?.toString().trim() || "";
+      const mineral = row.getCell(3).value?.toString().trim() || "";
+      const amount = Number(row.getCell(4).value) || 0;
+
+      // Bara lägg till om det finns data
+      if (astronaut && planet && mineral) {
+        newData.push({ astronaut, planet, mineral, amount });
+      }
+    });
+
+    setTableData(newData);
+    onDataLoaded(newData);
   };
 
   return (
@@ -55,7 +83,7 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
           Ladda upp Excel
         </Button>
       </label>
-      {data.length > 0 && <div>Data laddad!</div>}
+      {tableData.length > 0 && <div>Data laddad!</div>}
     </Box>
   );
 }
