@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import "@fontsource/roboto/700.css";
 import "@fontsource/orbitron/400.css";
 import FileImport from "./FileImport";
-import { useTableData } from "../context/TableDataContext";
+import { useTableData } from "../hooks/useTableData";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
 export default function Header() {
