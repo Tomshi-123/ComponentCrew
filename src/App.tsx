@@ -1,18 +1,17 @@
 import { useState } from "react";
 import Layout from "./layout/Layout";
-import Table from "./components/DataTable";
-import FileImport from "./components/FileImport";
+import DataTable from "./components/DataTable";
 import ExportButton from "./components/ExportButton";
 import type { TableData } from "./types/Types";
+import "./App.css";
 
 function App() {
   const [tabledata, setTableData] = useState<TableData>([]);
 
   return (
     <Layout>
-      <FileImport onDataLoaded={setTableData} />
-      <Table data={tabledata} setData={setTableData} />
-      <ExportButton data={tabledata} />
+      <DataTable data={tabledata} setData={setTableData} />
+      <ExportButton />
     </Layout>
   );
 }
