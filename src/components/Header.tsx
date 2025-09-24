@@ -9,7 +9,20 @@ import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 export default function Header() {
   const { setTableData } = useTableData();
 
-  // Definiera keyframes för glow-effekten på nederkanten (smal och fokuserad)
+  // Lägg till keyframes för text-glow
+const textGlowKeyframes = keyframes`
+  0% {
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
+  }
+  50% {
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
+  }
+  100% {
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
+  }
+`;
+
+
   const bottomGlowKeyframes = keyframes`
     0% {
       box-shadow: 0 0 3px #00ff00, 0 0 6px #00ff00;
@@ -50,7 +63,8 @@ export default function Header() {
             fontFamily: "orbitron",
             fontSize: "2rem",
             fontWeight: "300",
-            color: "#009082",
+              color: "#00ffff", // neonblå färg
+    animation: `${textGlowKeyframes} 2s ease-in-out infinite alternate`,
           }}
         >
           Space Mine Project
