@@ -9,7 +9,7 @@ import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 export default function Header() {
   const { setTableData } = useTableData();
 
-  // Lägg till keyframes för text-glow
+
 const textGlowKeyframes = keyframes`
   0% {
     text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
@@ -63,7 +63,7 @@ const textGlowKeyframes = keyframes`
             fontFamily: "orbitron",
             fontSize: "2rem",
             fontWeight: "300",
-              color: "#00ffff", // neonblå färg
+              color: "#00ffff", 
     animation: `${textGlowKeyframes} 2s ease-in-out infinite alternate`,
           }}
         >
