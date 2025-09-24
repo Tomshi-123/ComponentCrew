@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import { Pie } from "react-chartjs-2";
 import { useTableData } from "../hooks/useTableData";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import "@fontsource/orbitron/400.css";
 
 // Registrera Chart.js-elementen
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -62,12 +63,36 @@ export default function MineralPieChart() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: "500px",
-        height: "500px",
-        margin: "0 auto",
+        width: "40%",
+        height: "90%",
       }}
     >
-      <Pie data={chartData} />
+      <Pie
+        data={chartData}
+        height={500}
+        width={500}
+        options={{
+          maintainAspectRatio: false,
+          layout: {
+            padding: 30, // mer padding runt hela diagrammet
+          },
+          plugins: {
+            legend: {
+              position: "right",
+              labels: {
+                font: {
+                  family: "orbitron",
+                  size: 16,
+                },
+                padding: 50, // mer mellanrum mellan cirkeln och legend
+              },
+            },
+            tooltip: {
+              padding: 12, // ökar “luften” inuti tooltip
+            },
+          },
+        }}
+      />
     </Box>
   );
 }
