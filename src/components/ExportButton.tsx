@@ -1,5 +1,5 @@
 // import type { TableData } from "../types/Types";
-import { Box, Button } from "@mui/Material";
+import { Box, Button } from "@mui/material";
 
 // type ButtonProps = {
 //  data: TableData;
