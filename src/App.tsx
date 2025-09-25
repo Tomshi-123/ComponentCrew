@@ -5,12 +5,12 @@ import { useTableData } from "./hooks/useTableData";
 import "./App.css";
 
 function App() {
-  const { tableData, setTableData } = useTableData();
+  const { tableData } = useTableData();
 
   console.log("ExportButton rendered, data length:", tableData.length);
   return (
     <Layout>
-      <DataTable data={tableData} setData={setTableData} />
+      <DataTable />
       <ExportButton
         data={tableData}
         onClick={() => console.log("Exported to PDF")}
