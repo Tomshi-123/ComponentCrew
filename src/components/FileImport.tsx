@@ -8,7 +8,7 @@ type FileImportProps = {
 
 export default function FileImport({ onDataLoaded }: FileImportProps) {
 
-  const { tableData, handleFileUpload } = useExcelData(onDataLoaded);
+  const { handleFileUpload } = useExcelData(onDataLoaded);
 
   return (
     <Box
@@ -65,7 +65,6 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
           Ladda upp Excel
         </Button>
       </label>
-      {tableData.length > 0 && <div>Data laddad!</div>}
     </Box>
   );
 }
