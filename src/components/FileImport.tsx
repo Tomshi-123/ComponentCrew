@@ -1,50 +1,14 @@
 import { Button, Box } from "@mui/material";
-import * as ExcelJS from "exceljs";
-import type { TableData, SpaceMineData } from "../types/Types";
-import { useTableData } from "../hooks/useTableData";
+import { useExcelData } from "../hooks/useExcelData";
+import type { TableData } from "../types/Types";
 
 type FileImportProps = {
   onDataLoaded: (data: TableData) => void;
 };
 
 export default function FileImport({ onDataLoaded }: FileImportProps) {
-  const { tableData, setTableData } = useTableData();
 
-  const handleFileUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    const workbook = new ExcelJS.Workbook();
-    const arrayBuffer = await file.arrayBuffer();
-    await workbook.xlsx.load(arrayBuffer);
-
-    const worksheet = workbook.getWorksheet(1);
-    if (!worksheet) {
-      console.error("Inget första ark hittades i filen!");
-      return;
-    }
-
-    const newData: SpaceMineData[] = [];
-
-    worksheet.eachRow((row, rowNumber) => {
-      if (rowNumber === 1) return; 
-
-      const astronaut = row.getCell(1).value?.toString().trim() || "";
-      const planet = row.getCell(2).value?.toString().trim() || "";
-      const mineral = row.getCell(3).value?.toString().trim() || "";
-      const amount = Number(row.getCell(4).value) || 0;
-
-
-      if (astronaut && planet && mineral) {
-        newData.push({ astronaut, planet, mineral, amount });
-      }
-    });
-
-    setTableData(newData);
-    onDataLoaded(newData);
-  };
+  const { tableData, handleFileUpload } = useExcelData(onDataLoaded);
 
   return (
     <Box
@@ -68,9 +32,34 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
           variant="contained"
           component="span"
           sx={{
-            background: "transparent",
-            border: "1px solid green",
+            position: "relative",
+            overflow: "hidden",
+            border: "1px solid rgba(57, 255, 20, 0.7)",
             borderRadius: "10px",
+            color: "rgba(57, 255, 20, 0.7)",
+            background: "transparent",
+            boxShadow: "none",
+            zIndex: 1,
+            transition: "color 0.3s ease",
+            "&::before": {
+              content: '""',
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "0%",
+              height: "100%",
+              background: "linear-gradient(90deg, rgba(0, 200, 130, 1) 0%, rgba(57, 255, 20, 0.7) 100%)", // mörk → ljus
+              transition: "width 0.5s ease",
+              zIndex: -1,
+            },
+            "&:hover::before": {
+              width: "100%",
+            },
+            "&:hover": {
+              color: "black",
+              boxShadow:
+                "0 0 10px rgba(57, 255, 20, 0.7), 0 0 20px rgba(57, 255, 20, 0.7), 0 0 40px rgba(57, 255, 20, 0.7)",
+            },
           }}
         >
           Ladda upp Excel

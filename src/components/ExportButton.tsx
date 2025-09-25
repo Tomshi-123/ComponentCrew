@@ -15,8 +15,14 @@ export default function ExportButton({ data }: ButtonProps) {
   const handleExport = () => {
     if (data.length === 0) return;
 
-    const headers = Object.keys(data[0]);
-    const rows = data.map((row) => headers.map((header) => row[header]));
+    const headers = ["Astronaut", "Mineral", "Amount", "Planet"];
+
+    const rows = data.map((row) => [
+      row.astronaut ?? "",
+      row.mineral ?? "",
+      String(row.amount ?? ""),
+      row.planet ?? "",
+    ]);
 
     exportDataToPDF(headers, rows, "sheet-data.pdf");
   };
@@ -33,12 +39,34 @@ export default function ExportButton({ data }: ButtonProps) {
       }}
     >
       <Button
-        variant="contained"
+        variant="outlined"
         component="span"
         sx={{
-          background: "transparent",
-          border: "1px solid green",
+          position: "relative",
+          overflow: "hidden",
+          border: "2px solid rgba(0, 240, 160, 1)",
           borderRadius: "10px",
+          color: "rgba(0, 240, 160, 1)",
+          background: "transparent",
+          zIndex: 1,
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "0%",
+            height: "100%",
+            background: "linear-gradient(90deg, rgba(0, 240, 160, 1) 0%, rgba(0, 200, 130, 1) 100%)",
+            transition: "width 0.5s ease",
+            zIndex: -1,
+          },
+          "&:hover::before": {
+            width: "100%", 
+          },
+          "&:hover": {
+            color: "black",
+            boxShadow: "0 0 10px rgba(0, 240, 160, 1), 0 0 20px rgba(0, 240, 160, 1), 0 0 40px rgba(0, 240, 160, 1)",
+          },
         }}
         onClick={handleExport}
       >
