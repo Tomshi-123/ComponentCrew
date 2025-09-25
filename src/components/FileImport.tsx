@@ -29,14 +29,14 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
     const newData: SpaceMineData[] = [];
 
     worksheet.eachRow((row, rowNumber) => {
-      if (rowNumber === 1) return; // Skippa header-raden
+      if (rowNumber === 1) return; 
 
       const astronaut = row.getCell(1).value?.toString().trim() || "";
       const planet = row.getCell(2).value?.toString().trim() || "";
       const mineral = row.getCell(3).value?.toString().trim() || "";
       const amount = Number(row.getCell(4).value) || 0;
 
-      // Bara lägg till om det finns data
+
       if (astronaut && planet && mineral) {
         newData.push({ astronaut, planet, mineral, amount });
       }
