@@ -63,14 +63,20 @@ export default function DataTable() {
         marginTop: "2rem",
         color: "white",
         display: "flex",
-        justifyContent: data.length > 0 ? "space-between" : "center",
+        justifyContent: "space-between",
         alignItems: "center",
-        padding: data.length > 0 ? "2rem" : 0, 
-        position: "relative",
-        overflow: "hidden", 
+        padding: "2rem",
       }}
     >
-      {mainContent}
+      {data.length > 0 ? (
+        <MaterialReactTable table={table} />
+      ) : (
+        <Typography sx={{ fontFamily: "orbitron", textAlign: "center", mt: 4 }}>
+          Ingen data uppladdad ännu
+        </Typography>
+      )}
+
+      <PieChart />
     </Box>
   );
 }
