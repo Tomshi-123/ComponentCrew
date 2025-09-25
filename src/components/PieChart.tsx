@@ -56,7 +56,6 @@ export default function MineralPieChart() {
   return (
     <Box
       sx={{
-        backgroundColor: "#0A0A0A",
         padding: "2rem",
         borderRadius: "16px",
         display: "flex",
