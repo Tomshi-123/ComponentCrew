@@ -7,6 +7,7 @@ type FileImportProps = {
 };
 
 export default function FileImport({ onDataLoaded }: FileImportProps) {
+
   const { tableData, handleFileUpload } = useExcelData(onDataLoaded);
 
   return (
