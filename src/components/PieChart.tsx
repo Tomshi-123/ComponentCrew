@@ -13,25 +13,29 @@ export default function MineralPieChart() {
 
   // Summera mängder per mineral
   const chartData = useMemo(() => {
-    const totals: Record<string, number> = {};
+    const totals = tableData.reduce((acc: Record<string, number>, row) => {
+      const mineral = row.mineral?.trim() || "Okänt";
+      const amount = Number(row.amount) || 0;
 
-    tableData.forEach((row) => {
-      const mineral = row.mineral; // kolumnindex för "Mineral"
-      const amount = row.amount || 0; // kolumnindex för "Mängd"
+      if (amount > 0) acc[mineral] = (acc[mineral] || 0) + amount;
+      return acc;
+    }, {});
 
-      if (totals[mineral]) {
-        totals[mineral] += amount;
-      } else {
-        totals[mineral] = amount;
-      }
-    });
+    const labels = Object.keys(totals);
+    const data = Object.values(totals);
+
+    // Om ingen data finns, visa ett dummyvärde för att undvika fel i PieChart
+    if (labels.length === 0) {
+      labels.push("Ingen data");
+      data.push(1);
+    }
 
     return {
-      labels: Object.keys(totals),
+      labels,
       datasets: [
         {
           label: "Samlad mängd",
-          data: Object.values(totals),
+          data,
           backgroundColor: [
             "rgba(57, 255, 20, 0.7)",
             "rgba(255, 7, 58, 0.7)",
@@ -74,7 +78,7 @@ export default function MineralPieChart() {
         options={{
           maintainAspectRatio: false,
           layout: {
-            padding: 30, // mer padding runt hela diagrammet
+            padding: 30,
           },
           plugins: {
             legend: {
@@ -84,11 +88,11 @@ export default function MineralPieChart() {
                   family: "orbitron",
                   size: 16,
                 },
-                padding: 50, // mer mellanrum mellan cirkeln och legend
+                padding: 20,
               },
             },
             tooltip: {
-              padding: 12, // ökar “luften” inuti tooltip
+              padding: 12,
             },
           },
         }}

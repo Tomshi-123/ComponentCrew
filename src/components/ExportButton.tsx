@@ -1,20 +1,17 @@
 import { exportDataToPDF } from "../utils/pdfUtils";
-import type { TableData } from "../types/Types";
+
 import { Box, Button } from "@mui/material";
+import { useTableData } from "../hooks/useTableData";
 
-type ButtonProps = {
-  data: TableData;
-  onClick: () => void;
-};
-
-export default function ExportButton({ data }: ButtonProps) {
+export default function ExportButton() {
+  const { tableData } = useTableData();
   // Knapp för export till PDF
   // och eventuellt till Ecxel
   // Använder funktioner från /utils/pdfUtils.ts och /utils/excelUtils.ts.
 
   const handleExport = () => {
     alert("knapp klickes");
-    if (data.length === 0) {
+    if (tableData.length === 0) {
       console.warn("No data avaliable to export");
       alert("No data to export!");
       return;
@@ -22,7 +19,7 @@ export default function ExportButton({ data }: ButtonProps) {
 
     const headers = ["Astronaut", "Mineral", "Amount", "Planet"];
 
-    const rows = data.map((row) => [
+    const rows = tableData.map((row) => [
       row.astronaut ?? "",
       row.mineral ?? "",
       String(row.amount ?? ""),
@@ -63,16 +60,18 @@ export default function ExportButton({ data }: ButtonProps) {
             left: 0,
             width: "0%",
             height: "100%",
-            background: "linear-gradient(90deg, rgba(0, 240, 160, 1) 0%, rgba(0, 200, 130, 1) 100%)",
+            background:
+              "linear-gradient(90deg, rgba(0, 240, 160, 1) 0%, rgba(0, 200, 130, 1) 100%)",
             transition: "width 0.5s ease",
             zIndex: -1,
           },
           "&:hover::before": {
-            width: "100%", 
+            width: "100%",
           },
           "&:hover": {
             color: "black",
-            boxShadow: "0 0 10px rgba(0, 240, 160, 1), 0 0 20px rgba(0, 240, 160, 1), 0 0 40px rgba(0, 240, 160, 1)",
+            boxShadow:
+              "0 0 10px rgba(0, 240, 160, 1), 0 0 20px rgba(0, 240, 160, 1), 0 0 40px rgba(0, 240, 160, 1)",
           },
         }}
         onClick={handleExport}
