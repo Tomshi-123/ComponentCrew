@@ -13,7 +13,12 @@ export default function ExportButton({ data }: ButtonProps) {
   // Använder funktioner från /utils/pdfUtils.ts och /utils/excelUtils.ts.
 
   const handleExport = () => {
-    if (data.length === 0) return;
+    alert("knapp klickes");
+    if (data.length === 0) {
+      console.warn("No data avaliable to export");
+      alert("No data to export!");
+      return;
+    }
 
     const headers = ["Astronaut", "Mineral", "Amount", "Planet"];
 
@@ -24,11 +29,13 @@ export default function ExportButton({ data }: ButtonProps) {
       row.planet ?? "",
     ]);
 
+    console.log("Exporting data:", rows);
+
     exportDataToPDF(headers, rows, "sheet-data.pdf");
   };
 
   return (
-    // Enkel behållare för layout med Material-UI
+    //Enkel behållare för layout med Material-UI
     <Box
       sx={{
         marginTop: "2rem",
@@ -48,7 +55,7 @@ export default function ExportButton({ data }: ButtonProps) {
         }}
         onClick={handleExport}
       >
-        Expport to PDF
+        Export to PDF
       </Button>
     </Box>
   );

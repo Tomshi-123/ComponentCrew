@@ -12,14 +12,14 @@ import PieChart from "./PieChart";
 
 type DataTableProps = {
   data: TableData;
-  setData: React.Dispatch<React.SetStateAction<TableData>>;
+  setData: (data: TableData) => void;
 };
 
 export default function DataTable({ data, setData }: DataTableProps) {
   const columns: MRT_ColumnDef<TableData[number]>[] =
     data && data.length > 0
       ? Object.keys(data[0]).map((key) => ({
-          accessoryKey: key,
+          accessorKey: key,
           header: key.toUpperCase() + key.slice(1),
           size: 150,
         }))

@@ -1,18 +1,18 @@
-import { useState } from "react";
 import Layout from "./layout/Layout";
 import DataTable from "./components/DataTable";
 import ExportButton from "./components/ExportButton";
-import type { TableData } from "./types/Types";
+import { useTableData } from "./hooks/useTableData";
 import "./App.css";
 
 function App() {
-  const [tabledata, setTableData] = useState<TableData>([]);
+  const { tableData, setTableData } = useTableData();
 
+  console.log("ExportButton rendered, data length:", tableData.length);
   return (
     <Layout>
-      <DataTable data={tabledata} setData={setTableData} />
+      <DataTable data={tableData} setData={setTableData} />
       <ExportButton
-        data={tabledata}
+        data={tableData}
         onClick={() => console.log("Exported to PDF")}
       />
     </Layout>
