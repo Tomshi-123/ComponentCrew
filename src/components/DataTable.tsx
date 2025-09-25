@@ -1,4 +1,3 @@
-import React from "react";
 import {
   MaterialReactTable,
   useMaterialReactTable,
@@ -9,17 +8,15 @@ import "@fontsource/orbitron/400.css";
 import type { TableData } from "../types/Types";
 import PieChart from "./PieChart";
 import SolarSystem from "./SolarSystem";
-import { useTableData } from "../hooks/useTableData"; 
-
+import { useTableData } from "../hooks/useTableData";
 
 export default function DataTable() {
-  
-  const { tableData: data, setTableData: setData } = useTableData(); 
+  const { tableData: data, setTableData: setData } = useTableData();
 
   const columns: MRT_ColumnDef<TableData[number]>[] =
     data && data.length > 0
       ? Object.keys(data[0]).map((key) => ({
-          accessorKey: key, 
+          accessorKey: key,
           header: key.toUpperCase() + key.slice(1),
           size: 150,
         }))
@@ -36,19 +33,19 @@ export default function DataTable() {
     },
   });
 
-
-  const mainContent = data.length > 0 ? (
-    <>
-      <MaterialReactTable table={table} />
-      <PieChart />
-    </>
-  ) : (
-    <SolarSystem
-      isAnimating={false} 
-      text={"Ingen data uppladdad ännu"}
-      durationMs={0}
-    />
-  );
+  const mainContent =
+    data.length > 0 ? (
+      <>
+        <MaterialReactTable table={table} />
+        <PieChart />
+      </>
+    ) : (
+      <SolarSystem
+        isAnimating={false}
+        text={"Ingen data uppladdad ännu"}
+        durationMs={0}
+      />
+    );
 
   return (
     <Box
@@ -62,14 +59,13 @@ export default function DataTable() {
         marginTop: "2rem",
         color: "white",
         display: "flex",
-        justifyContent: data.length > 0 ? "space-between" : "center", 
+        justifyContent: data.length > 0 ? "space-between" : "center",
         alignItems: "center",
-        padding: data.length > 0 ? "2rem" : 0, 
-        position: "relative", 
-        overflow: "hidden", 
+        padding: data.length > 0 ? "2rem" : 0,
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-
       {mainContent}
     </Box>
   );
