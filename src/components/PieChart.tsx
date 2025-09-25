@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Box } from "@mui/material";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import { useTableData } from "../hooks/useTableData";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "@fontsource/orbitron/400.css";
@@ -36,14 +36,7 @@ export default function MineralPieChart() {
         {
           label: "Samlad mängd",
           data,
-          backgroundColor: [
-            "rgba(57, 255, 20, 0.7)",
-            "rgba(255, 7, 58, 0.7)",
-            "rgba(0, 255, 255, 0.7)",
-            "rgba(255, 0, 255, 0.7)",
-            "rgba(255, 211, 0, 0.7)",
-            "rgba(0, 191, 255, 0.7)",
-          ],
+          backgroundColor: ["transparent"],
           borderColor: [
             "rgba(57, 255, 20, 1)",
             "rgba(255, 7, 58, 1)",
@@ -53,6 +46,8 @@ export default function MineralPieChart() {
             "rgba(0, 191, 255, 1)",
           ],
           borderWidth: 3,
+          borderRadius: 6,
+          spacing: 10,
         },
       ],
     };
@@ -71,7 +66,7 @@ export default function MineralPieChart() {
         height: "90%",
       }}
     >
-      <Pie
+      <Doughnut
         data={chartData}
         height={500}
         width={500}
