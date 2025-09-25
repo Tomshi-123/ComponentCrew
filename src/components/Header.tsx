@@ -49,14 +49,30 @@ const textGlowKeyframes = keyframes`
       }}
     >
      
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Typography
-          variant="h1"
-          gutterBottom
-          sx={{ fontFamily: "Roboto", fontSize: "3rem", fontWeight: "700", color: "#5bf8b7ff",}}
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <Typography
+      variant="h1"
+      gutterBottom
+      sx={{
+        fontFamily: "Roboto",
+        fontSize: "3rem",
+        fontWeight: "700",
+        color: "#5bf8b7ff",
+        display: "flex",
+        alignItems: "center",
+        }}
         >
-          Component Crew <RocketLaunchIcon></RocketLaunchIcon>
-        </Typography>
+  <Box
+    component="span"
+    sx={{
+      display: { xs: "none", md: "inline"}, 
+      mr: 1, 
+    }}
+  >
+    Component Crew
+  </Box>
+  <RocketLaunchIcon />
+</Typography>
         <Typography
           variant="h3"
           sx={{

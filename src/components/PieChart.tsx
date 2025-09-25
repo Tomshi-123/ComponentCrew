@@ -61,8 +61,9 @@ export default function MineralPieChart() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: "40%",
+        width: "70%",
         height: "90%",
+        overflow: "auto",
       }}
     >
       <Doughnut

@@ -130,7 +130,12 @@ export default function DataTable() {
   const mainContent =
     data.length > 0 ? (
       <>
+      <Box
+      sx={{
+        width: {xs: "95%", md: "55%"}
+      }}>
         <MaterialReactTable table={table} />
+        </Box>
         <PieChart />
       </>
     ) : (
@@ -145,14 +150,14 @@ export default function DataTable() {
     <Box
       sx={{
         backgroundColor: UNIFIED_BG,
-        width: "95%",
-        height: "60vh",
+        width: {xs: "84%", md: "90%"},
+        minHeight: "60vh",
         borderRadius: "20px",
         marginLeft: "auto",
         marginRight: "auto",
         marginTop: "2rem",
         color: "white",
-
+        flexDirection: {xs: "column", md: "row"},
         display: "flex",
         justifyContent: data.length > 0 ? "space-between" : "center",
         alignItems: "center",
