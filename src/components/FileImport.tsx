@@ -7,7 +7,8 @@ type FileImportProps = {
 };
 
 export default function FileImport({ onDataLoaded }: FileImportProps) {
-  const { tableData, handleFileUpload } = useExcelData(onDataLoaded);
+
+  const { handleFileUpload } = useExcelData(onDataLoaded);
 
   return (
     <Box
@@ -31,15 +32,39 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
           variant="contained"
           component="span"
           sx={{
-            background: "transparent",
-            border: "1px solid green",
+            position: "relative",
+            overflow: "hidden",
+            border: "1px solid rgba(57, 255, 20, 0.7)",
             borderRadius: "10px",
+            color: "rgba(57, 255, 20, 0.7)",
+            background: "transparent",
+            boxShadow: "none",
+            zIndex: 1,
+            transition: "color 0.3s ease",
+            "&::before": {
+              content: '""',
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "0%",
+              height: "100%",
+              background: "linear-gradient(90deg, rgba(0, 200, 130, 1) 0%, rgba(57, 255, 20, 0.7) 100%)", // mörk → ljus
+              transition: "width 0.5s ease",
+              zIndex: -1,
+            },
+            "&:hover::before": {
+              width: "100%",
+            },
+            "&:hover": {
+              color: "black",
+              boxShadow:
+                "0 0 10px rgba(57, 255, 20, 0.7), 0 0 20px rgba(57, 255, 20, 0.7), 0 0 40px rgba(57, 255, 20, 0.7)",
+            },
           }}
         >
           Ladda upp Excel
         </Button>
       </label>
-      {tableData.length > 0 && <div>Data laddad!</div>}
     </Box>
   );
 }
