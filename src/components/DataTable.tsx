@@ -1,4 +1,4 @@
-
+import React from "react";
 import {
   MaterialReactTable,
   useMaterialReactTable,
@@ -14,7 +14,6 @@ import { useTableData } from "../hooks/useTableData";
 
 export default function DataTable() {
   
-
   const { tableData: data, setTableData: setData } = useTableData(); 
 
   const columns: MRT_ColumnDef<TableData[number]>[] =
@@ -63,20 +62,15 @@ export default function DataTable() {
         marginTop: "2rem",
         color: "white",
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: data.length > 0 ? "space-between" : "center", 
         alignItems: "center",
-        padding: "2rem",
+        padding: data.length > 0 ? "2rem" : 0, 
+        position: "relative", 
+        overflow: "hidden", 
       }}
     >
-      {data.length > 0 ? (
-        <MaterialReactTable table={table} />
-      ) : (
-        <Typography sx={{ fontFamily: "orbitron", textAlign: "center", mt: 4 }}>
-          Ingen data uppladdad ännu
-        </Typography>
-      )}
 
-      <PieChart />
+      {mainContent}
     </Box>
   );
 }
