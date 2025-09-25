@@ -17,7 +17,7 @@ export default function DataTable() {
     data && data.length > 0
       ? Object.keys(data[0]).map((key) => ({
           accessorKey: key,
-          header: key.toUpperCase() + key.slice(1),
+          header: key.charAt(0).toUpperCase() + key.slice(1),
           size: 150,
         }))
       : [];
