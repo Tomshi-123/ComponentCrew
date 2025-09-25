@@ -32,7 +32,7 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
           component="span"
           sx={{
             background: "transparent",
-            border: "1px solid green",
+            border: "2px solid green",
             borderRadius: "10px",
           }}
         >
