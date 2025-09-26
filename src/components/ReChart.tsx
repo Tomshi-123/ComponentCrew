@@ -4,16 +4,16 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import { useTableData } from "../hooks/useTableData";
 import "@fontsource/orbitron/400.css";
 
+// Konstanta neonfärger för mineraler
+const mineralColors: Record<string, string> = {
+  Aetherium: "rgba(239, 115, 255, 1)",
+  Lunarium: "rgba(0, 81, 255, 1)",
+  Solenite: "rgba(0, 170, 255, 1)",
+  Nebrillium: "rgba(0, 255, 242, 1)",
+};
+
 export default function RechartPieChart() {
   const { tableData } = useTableData();
-
-  // Fasta neonfärger per mineral
-  const mineralColors: Record<string, string> = {
-    Aetherium: "rgba(239, 115, 255, 1)",
-    Lunarium: "rgba(0, 81, 255, 1)",
-    Solenite: "rgba(0, 170, 255, 1)",
-    Nebrillium: "rgba(0, 255, 242, 1)",
-  };
 
   const chartData = useMemo(() => {
     const totals = tableData.reduce((acc: Record<string, number>, row) => {
@@ -34,7 +34,7 @@ export default function RechartPieChart() {
     return labels.map((label, index) => ({
       name: label,
       value: data[index],
-      color: mineralColors[label] ?? "rgba(255,255,255,1)", // vit för nya mineraler
+      color: mineralColors[label] ?? "rgba(255,255,255,1)",
     }));
   }, [tableData]);
 
@@ -59,7 +59,7 @@ export default function RechartPieChart() {
           innerRadius={80}
           outerRadius={120}
           paddingAngle={6}
-          cornerRadius={6}
+          cornerRadius={6} // Rundade kanter
         >
           {chartData.map((entry, index) => (
             <Cell
@@ -68,7 +68,11 @@ export default function RechartPieChart() {
               stroke={entry.color}
               strokeWidth={4}
               style={{
-                filter: `drop-shadow(0 0 20px ${entry.color}) drop-shadow(0 0 30px ${entry.color})`,
+                filter: `
+                  drop-shadow(0 0 15px ${entry.color})
+                  drop-shadow(0 0 25px ${entry.color})
+                  drop-shadow(0 0 35px ${entry.color})
+                `,
               }}
             />
           ))}
@@ -82,7 +86,7 @@ export default function RechartPieChart() {
           align="center"
           iconType="square"
           wrapperStyle={{ fontFamily: "orbitron", fontSize: 16 }}
-          content={(props) => {
+          content={(props: any) => {
             const { payload } = props;
             return (
               <div
@@ -94,11 +98,11 @@ export default function RechartPieChart() {
               >
                 {payload?.map((entry: any, index: number) => {
                   const color =
-                    chartData.find((d) => d.name === entry.value)?.color ??
-                    "rgba(255,255,255,1)";
+                    chartData.find((d) => d.name === entry.payload.name)
+                      ?.color ?? "rgba(255,255,255,1)";
                   return (
                     <div
-                      key={`item-${index}`}
+                      key={index}
                       style={{
                         display: "flex",
                         alignItems: "center",
@@ -116,7 +120,7 @@ export default function RechartPieChart() {
                           marginRight: 6,
                         }}
                       />
-                      {entry.value}
+                      {entry.payload.name}
                     </div>
                   );
                 })}
