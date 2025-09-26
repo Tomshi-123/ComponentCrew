@@ -1,4 +1,3 @@
-import React from "react";
 import {
   MaterialReactTable,
   useMaterialReactTable,
@@ -7,7 +6,7 @@ import {
 import { Box } from "@mui/system";
 import "@fontsource/orbitron/400.css";
 import type { TableData } from "../types/Types";
-import PieChart from "./PieChart";
+import ReChart from "./ReChart";
 import SolarSystem from "./SolarSystem";
 import { useTableData } from "../hooks/useTableData";
 
@@ -70,7 +69,10 @@ export default function DataTable() {
         maxHeight: "50vh",
         overflow: "auto",
         "&::-webkit-scrollbar": { width: "8px", height: "8px" },
-        "&::-webkit-scrollbar-thumb": { backgroundColor: `${NEON_BLUE}55`, borderRadius: "4px" },
+        "&::-webkit-scrollbar-thumb": {
+          backgroundColor: `${NEON_BLUE}55`,
+          borderRadius: "4px",
+        },
       },
     },
 
@@ -130,13 +132,14 @@ export default function DataTable() {
   const mainContent =
     data.length > 0 ? (
       <>
-      <Box
-      sx={{
-        width: {xs: "95%", md: "55%"}
-      }}>
-        <MaterialReactTable table={table} />
+        <Box
+          sx={{
+            width: { xs: "95%", md: "55%" },
+          }}
+        >
+          <MaterialReactTable table={table} />
         </Box>
-        <PieChart />
+        <ReChart />
       </>
     ) : (
       <SolarSystem
@@ -150,14 +153,14 @@ export default function DataTable() {
     <Box
       sx={{
         backgroundColor: UNIFIED_BG,
-        width: {xs: "84%", md: "90%"},
+        width: { xs: "84%", md: "90%" },
         minHeight: "60vh",
         borderRadius: "20px",
         marginLeft: "auto",
         marginRight: "auto",
         marginTop: "2rem",
         color: "white",
-        flexDirection: {xs: "column", md: "row"},
+        flexDirection: { xs: "column", md: "row" },
         display: "flex",
         justifyContent: data.length > 0 ? "space-between" : "center",
         alignItems: "center",
