@@ -6,7 +6,7 @@ import {
 import { Box } from "@mui/system";
 import "@fontsource/orbitron/400.css";
 import type { TableData } from "../types/Types";
-import PieChart from "./PieChart";
+import ReChart from "./ReChart";
 import SolarSystem from "./SolarSystem";
 import { useTableData } from "../hooks/useTableData";
 
@@ -37,7 +37,7 @@ export default function DataTable() {
     data.length > 0 ? (
       <>
         <MaterialReactTable table={table} />
-        <PieChart />
+        <ReChart />
       </>
     ) : (
       <SolarSystem
