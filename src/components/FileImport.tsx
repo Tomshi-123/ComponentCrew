@@ -7,17 +7,18 @@ type FileImportProps = {
 };
 
 export default function FileImport({ onDataLoaded }: FileImportProps) {
-
   const { handleFileUpload } = useExcelData(onDataLoaded);
 
   return (
     <Box
       sx={{
-        marginTop: "4rem",
+        marginTop: "1rem",
         display: "flex",
         justifyContent: "flex-end",
         alignItems: "flex-end",
         paddingRight: "4rem",
+        marginLeft: "auto",
+        marginRight: { xs: "auto", sm: "0", md: "0" },
       }}
     >
       <input
@@ -34,9 +35,9 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
           sx={{
             position: "relative",
             overflow: "hidden",
-            border: "1px solid rgba(57, 255, 20, 0.7)",
+            border: "1px solid #00ffff",
             borderRadius: "10px",
-            color: "rgba(57, 255, 20, 0.7)",
+            color: "#00ffff",
             background: "transparent",
             boxShadow: "none",
             zIndex: 1,
@@ -48,7 +49,8 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
               left: 0,
               width: "0%",
               height: "100%",
-              background: "linear-gradient(90deg, rgba(0, 200, 130, 1) 0%, rgba(57, 255, 20, 0.7) 100%)", // mörk → ljus
+              background:
+                "linear-gradient(90deg, rgba(0, 200, 130, 1) 0%, rgba(57, 255, 20, 0.7) 100%)", // mörk → ljus
               transition: "width 0.5s ease",
               zIndex: -1,
             },

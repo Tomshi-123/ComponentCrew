@@ -1,10 +1,16 @@
 import { useMemo } from "react";
 import { Box } from "@mui/material";
-import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import { useTableData } from "../hooks/useTableData";
 import "@fontsource/orbitron/400.css";
 
-// Konstanta neonfärger för mineraler
 const mineralColors: Record<string, string> = {
   Aetherium: "rgba(239, 115, 255, 1)",
   Lunarium: "rgba(0, 81, 255, 1)",
@@ -41,94 +47,105 @@ export default function RechartPieChart() {
   return (
     <Box
       sx={{
-        padding: "2rem",
+        width: "100%",
+
+        height: { xs: 350, sm: 400, md: 450, lg: 500 }, // flexibel höjd
+        borderRadius: "10px",
+        backgroundColor: "black",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: "35%",
-        height: "90%",
+        border: "4px solid #00ffff",
+        py: 4,
       }}
     >
-      <PieChart width={500} height={500}>
-        <Pie
-          data={chartData}
-          dataKey="value"
-          nameKey="name"
-          cx="50%"
-          cy="50%"
-          innerRadius={80}
-          outerRadius={120}
-          paddingAngle={6}
-          cornerRadius={6} // Rundade kanter
-        >
-          {chartData.map((entry, index) => (
-            <Cell
-              key={index}
-              fill="transparent"
-              stroke={entry.color}
-              strokeWidth={4}
-              style={{
-                filter: `
-                  drop-shadow(0 0 15px ${entry.color})
-                  drop-shadow(0 0 25px ${entry.color})
-                  drop-shadow(0 0 35px ${entry.color})
-                `,
-              }}
-            />
-          ))}
-        </Pie>
-
-        <Tooltip />
-
-        <Legend
-          layout="horizontal"
-          verticalAlign="bottom"
-          align="center"
-          iconType="square"
-          wrapperStyle={{ fontFamily: "orbitron", fontSize: 16 }}
-          content={(props: any) => {
-            const { payload } = props;
-            return (
-              <div
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart width={400} height={400}>
+          <Pie
+            data={chartData}
+            dataKey="value"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            innerRadius={"40%"}
+            outerRadius={"70%"}
+            paddingAngle={6}
+            cornerRadius={6}
+          >
+            {chartData.map((entry, index) => (
+              <Cell
+                key={index}
+                fill="transparent"
+                stroke={entry.color}
+                strokeWidth={4}
                 style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  flexWrap: "wrap",
+                  filter: `
+                    drop-shadow(0 0 15px ${entry.color})
+                    drop-shadow(0 0 25px ${entry.color})
+                    drop-shadow(0 0 35px ${entry.color})
+                  `,
                 }}
-              >
-                {payload?.map((entry: any, index: number) => {
-                  const color =
-                    chartData.find((d) => d.name === entry.payload.name)
-                      ?.color ?? "rgba(255,255,255,1)";
-                  return (
-                    <div
-                      key={index}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        margin: "0 8px",
-                        fontFamily: "orbitron",
-                        fontSize: 16,
-                      }}
-                    >
-                      <span
+              />
+            ))}
+          </Pie>
+
+          <Tooltip />
+
+          <Legend
+            layout="horizontal"
+            verticalAlign="bottom"
+            align="center"
+            iconType="square"
+            wrapperStyle={{
+              fontFamily: "orbitron",
+              fontSize: "16px",
+              paddingTop: 10,
+            }}
+            content={(props: any) => {
+              const { payload } = props;
+              return (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  {payload?.map((entry: any, index: number) => {
+                    const color =
+                      chartData.find((d) => d.name === entry.payload.name)
+                        ?.color ?? "rgba(255,255,255,1)";
+                    return (
+                      <div
+                        key={index}
                         style={{
-                          display: "inline-block",
-                          width: 16,
-                          height: 16,
-                          backgroundColor: color,
-                          marginRight: 6,
+                          display: "flex",
+                          alignItems: "center",
+                          margin: "4px 8px",
+                          fontFamily: "orbitron",
+                          fontSize: 16,
+                          color: "white",
                         }}
-                      />
-                      {entry.payload.name}
-                    </div>
-                  );
-                })}
-              </div>
-            );
-          }}
-        />
-      </PieChart>
+                      >
+                        <span
+                          style={{
+                            display: "inline-block",
+                            width: 16,
+                            height: 16,
+                            backgroundColor: color,
+                            marginRight: 6,
+                          }}
+                        />
+                        {entry.payload.name}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            }}
+          />
+        </PieChart>
+      </ResponsiveContainer>
     </Box>
   );
 }
