@@ -1,13 +1,13 @@
 import Layout from "./layout/Layout";
-import DataTable from "./components/DataTable";
 import ExportButton from "./components/ExportButton";
+import Main from "./components/Main";
 
 import "./App.css";
 
 function App() {
   return (
     <Layout>
-      <DataTable />
+      <Main />
       <ExportButton />
     </Layout>
   );

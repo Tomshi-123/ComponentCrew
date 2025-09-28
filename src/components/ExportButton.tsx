@@ -6,21 +6,16 @@ import Toast from "./Toast";
 
 export default function ExportButton() {
   const { tableData } = useTableData();
-
   const [showToast, setShowToast] = useState(true);
-  // Knapp för export till PDF
-  // och eventuellt till Ecxel
-  // Använder funktioner från /utils/pdfUtils.ts och /utils/excelUtils.ts.
 
   const handleExport = () => {
     if (tableData.length === 0) {
-      console.warn("No data avaliable to export");
+      console.warn("No data available to export");
       alert("No data to export!");
       return;
     }
 
     const headers = ["Astronaut", "Mineral", "Amount", "Planet"];
-
     const rows = tableData.map((row) => [
       row.astronaut ?? "",
       row.mineral ?? "",
@@ -29,20 +24,18 @@ export default function ExportButton() {
     ]);
 
     exportDataToPDF(headers, rows, "sheet-data.pdf");
-
     setShowToast(true);
   };
 
   return (
-    //Enkel behållare för layout med Material-UI
     <>
       <Box
         sx={{
-          marginTop: "2rem",
+          marginTop: 1,
           display: "flex",
           justifyContent: "flex-end",
           alignItems: "flex-end",
-          paddingRight: 4,
+          paddingRight: 2,
         }}
       >
         <Button
@@ -51,11 +44,17 @@ export default function ExportButton() {
           sx={{
             position: "relative",
             overflow: "hidden",
-            border: "2px solid rgba(0, 240, 160, 1)",
+            border: "2px solid #00ffff",
             borderRadius: "10px",
-            color: "rgba(0, 240, 160, 1)",
+            color: "#00ffff",
             background: "transparent",
+            fontFamily: "orbitron",
+            fontSize: { xs: "0.75rem", sm: "0.9rem", md: "1rem" },
+            fontWeight: 500,
+            letterSpacing: "1px",
+            textTransform: "uppercase",
             zIndex: 1,
+            transition: "all 0.3s ease",
             "&::before": {
               content: '""',
               position: "absolute",
@@ -63,8 +62,7 @@ export default function ExportButton() {
               left: 0,
               width: "0%",
               height: "100%",
-              background:
-                "linear-gradient(90deg, rgba(0, 240, 160, 1) 0%, rgba(0, 200, 130, 1) 100%)",
+              background: "linear-gradient(90deg, #00ffff 0%, #00aaff 100%)",
               transition: "width 0.5s ease",
               zIndex: -1,
             },
@@ -73,8 +71,7 @@ export default function ExportButton() {
             },
             "&:hover": {
               color: "black",
-              boxShadow:
-                "0 0 10px rgba(0, 240, 160, 1), 0 0 20px rgba(0, 240, 160, 1), 0 0 40px rgba(0, 240, 160, 1)",
+              boxShadow: "0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff",
             },
           }}
           onClick={handleExport}
@@ -82,6 +79,7 @@ export default function ExportButton() {
           Export to PDF
         </Button>
       </Box>
+
       {showToast && (
         <Toast
           message="File exported successfully!"
