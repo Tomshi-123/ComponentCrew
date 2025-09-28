@@ -16,7 +16,7 @@ export default function Footer() {
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Typographyxs
+        <Typography
           variant="h5"
           gutterBottom
           sx={{
@@ -26,7 +26,7 @@ export default function Footer() {
           }}
         >
           © 2025 Component Crew. All rights reserved.
-        </Typographyxs>
+        </Typography>
         <Typography
           variant="h3"
           sx={{

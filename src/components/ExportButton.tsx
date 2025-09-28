@@ -6,7 +6,7 @@ import Toast from "./Toast";
 
 export default function ExportButton() {
   const { tableData } = useTableData();
-  const [showToast, setShowToast] = useState(true);
+  const [showToast, setShowToast] = useState(false);
 
   const handleExport = () => {
     if (tableData.length === 0) {

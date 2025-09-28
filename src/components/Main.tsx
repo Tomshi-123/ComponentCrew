@@ -16,11 +16,9 @@ export default function Main() {
         alignItems: { md: "center", lg: "flex-start" },
         gap: { xs: 0, sm: 0, md: 4 },
         marginTop: 5,
-
         flexDirection: { xs: "column", md: "column", lg: "row" }, // column på små skärmar, row på stora
         width: "95vw",
         borderRadius: "20px",
-
         height: "auto",
         padding: 2,
       }}

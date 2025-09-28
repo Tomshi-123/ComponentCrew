@@ -73,6 +73,7 @@ const SolarSystem: React.FC<SolarSystemProps> = React.memo(
           alignItems: "center",
           width: "100%",
           height: "100%",
+          minHeight: "40vh",
           zIndex: 10,
           backgroundColor: "transparent",
           animation: isAnimating
