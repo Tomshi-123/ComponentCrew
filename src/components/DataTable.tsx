@@ -22,7 +22,7 @@ export default function DataTable() {
       : [];
 
   const NEON_BLUE = "#00ffff";
-  const NEON_GREEN = "#45fff9ff";
+  const NEON_GREEN = "#45ffaeff";
 
   const table = useMaterialReactTable({
     columns,
