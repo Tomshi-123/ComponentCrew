@@ -13,14 +13,13 @@
     "@fontsource/orbitron": "^5.2.8",
     "@fontsource/roboto": "^5.2.8",
     "@mui/material": "^7.3.2",
-    "chart.js": "^4.5.0",
     "exceljs": "^4.4.0",
     "jspdf": "^3.0.3",
     "jspdf-autotable": "^5.0.2",
     "material-react-table": "^3.2.1",
     "react": "^19.1.1",
-    "react-chartjs-2": "^5.3.0",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "recharts": "^3.2.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

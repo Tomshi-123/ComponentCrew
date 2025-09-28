@@ -1,4 +1,3 @@
-import React from "react";
 import {
   MaterialReactTable,
   useMaterialReactTable,
@@ -7,8 +6,7 @@ import {
 import { Box } from "@mui/system";
 import "@fontsource/orbitron/400.css";
 import type { TableData } from "../types/Types";
-import PieChart from "./PieChart";
-import SolarSystem from "./SolarSystem";
+
 import { useTableData } from "../hooks/useTableData";
 
 export default function DataTable() {
@@ -24,14 +22,15 @@ export default function DataTable() {
       : [];
 
   const NEON_BLUE = "#00ffff";
-  const NEON_GREEN = "#00ff00";
-  const UNIFIED_BG = "#001428cb";
-  const DARK_BG = "#001a33";
+  const NEON_GREEN = "#45fff9ff";
 
   const table = useMaterialReactTable({
     columns,
     data,
     enableEditing: true,
+    initialState: {
+      density: "compact",
+    },
 
     onEditingRowSave: async ({ values, row }) => {
       const updatedData = [...data];
@@ -44,54 +43,80 @@ export default function DataTable() {
     // =========================================================
     muiTablePaperProps: {
       sx: {
-        backgroundColor: "transparent",
+        backgroundColor: "black",
         boxShadow: "none",
         color: NEON_BLUE,
+        border: `3px solid ${NEON_BLUE}`,
+        borderRadius: "10px",
+        width: "100%",
+        height: "100%",
+        overflow: "hidden",
       },
     },
 
     muiTopToolbarProps: {
       sx: {
-        backgroundColor: DARK_BG,
+        border: `1px solid ${NEON_BLUE}`,
+        backgroundColor: "black",
         "& .MuiSvgIcon-root": { color: NEON_BLUE },
       },
     },
 
     muiSearchTextFieldProps: {
+      inputProps: { style: { color: NEON_BLUE } },
+      InputProps: {
+        sx: {
+          "& .MuiInputBase-input": { color: NEON_BLUE + " !important" },
+        },
+      },
       sx: {
-        "& .MuiInputBase-root": { backgroundColor: DARK_BG, color: NEON_BLUE },
+        "& .MuiInputBase-root": {
+          backgroundColor: "black",
+        },
+        "& input": {
+          color: NEON_BLUE + " !important",
+        },
+        "& input::placeholder": {
+          color: NEON_BLUE + " !important",
+          opacity: 0.6,
+        },
         "& .MuiInputLabel-root": { color: NEON_BLUE },
+        "& .MuiOutlinedInput-notchedOutline": {
+          borderColor: NEON_BLUE,
+        },
       },
     },
 
     muiTableContainerProps: {
       sx: {
-        backgroundColor: "transparent",
-        maxHeight: "50vh",
-        overflow: "auto",
+        backgroundColor: "black",
+        flex: 1,
+        minHeight: 0, // så att flexbox shrink funkar
+        overflow: "auto", // både x och y scroll vid behov
         "&::-webkit-scrollbar": { width: "8px", height: "8px" },
-        "&::-webkit-scrollbar-thumb": { backgroundColor: `${NEON_BLUE}55`, borderRadius: "4px" },
+        "&::-webkit-scrollbar-thumb": {
+          backgroundColor: "white",
+          borderRadius: "4px",
+        },
       },
     },
 
-    muiTableHeadProps: {
-      sx: { backgroundColor: DARK_BG },
-    },
+    muiTableHeadProps: { sx: { backgroundColor: "black" } },
 
     muiTableHeadCellProps: {
       sx: {
         color: NEON_BLUE,
+        fontFamily: "orbitron",
         fontSize: "1rem",
-        fontWeight: "bold",
         borderBottom: `3px solid ${NEON_BLUE}`,
-        backgroundColor: DARK_BG,
+        backgroundColor: "black",
         "& .MuiSvgIcon-root": { color: NEON_BLUE },
       },
     },
 
     muiTableBodyRowProps: {
       sx: {
-        backgroundColor: "transparent",
+        backgroundColor: "black",
         "&:hover": { backgroundColor: `${NEON_BLUE}15` },
       },
     },
@@ -99,8 +124,10 @@ export default function DataTable() {
     muiTableBodyCellProps: {
       sx: {
         color: NEON_GREEN,
+        fontFamily: "monospace",
         fontSize: "0.95rem",
-        borderBottom: `1px solid ${NEON_GREEN}30`,
+        borderBottom: `1px solid rgba(17, 168, 250, 0.34)`,
+        backgroundColor: "black",
         "& .MuiSvgIcon-root": { color: NEON_BLUE },
       },
     },
@@ -110,59 +137,37 @@ export default function DataTable() {
     // =========================================================
     muiBottomToolbarProps: {
       sx: {
-        backgroundColor: DARK_BG,
-        // Footern
-        "& .MuiTablePagination-root": { backgroundColor: DARK_BG },
-        "& .MuiTablePagination-toolbar": { backgroundColor: DARK_BG },
-        "& .MuiTablePagination-spacer": { backgroundColor: DARK_BG },
-        "& .MuiTablePagination-caption": { color: NEON_BLUE }, // Rows per page text
-        "& .MuiSelect-select": { color: NEON_BLUE }, // dropdown number
-        "& .MuiSvgIcon-root": { color: NEON_BLUE }, // dropdown arrow
-        // Dropdown menu items
+        backgroundColor: "black",
+        "& .MuiTablePagination-caption": { color: "white !important" },
+        "& .MuiTablePagination-selectLabel": { color: "white !important" },
+        "& .MuiTablePagination-displayedRows": {
+          color: NEON_BLUE + " !important",
+        },
+        "& .MuiTypography-root": { color: "white" },
+        "& .MuiSelect-select": { color: NEON_BLUE },
+        "& .MuiSvgIcon-root": { color: NEON_BLUE },
         "& .MuiMenu-paper": {
-          backgroundColor: DARK_BG,
+          backgroundColor: "black",
           "& .MuiMenuItem-root": { color: NEON_BLUE },
         },
       },
     },
   });
 
-  const mainContent =
-    data.length > 0 ? (
-      <>
-        <MaterialReactTable table={table} />
-        <PieChart />
-      </>
-    ) : (
-      <SolarSystem
-        isAnimating={false}
-        text={"Ingen data uppladdad ännu"}
-        durationMs={0}
-      />
-    );
-
   return (
     <Box
       sx={{
-        backgroundColor: UNIFIED_BG,
-        width: "95%",
-        height: "60vh",
+        width: "100%",
+        height: "100%", // Tabell tar upp 80% av viewport height
         borderRadius: "20px",
-        marginLeft: "auto",
-        marginRight: "auto",
-        marginTop: "2rem",
-        color: "white",
-
+        padding: "1rem",
+        border: `3px solid ${NEON_BLUE}`,
         display: "flex",
-        justifyContent: data.length > 0 ? "space-between" : "center",
-        alignItems: "center",
-
-        padding: data.length > 0 ? "2rem" : 0,
-        position: "relative",
-        overflow: "auto",
+        flexDirection: "column",
+        overflow: "hidden", // håller tabellen inom boxen
       }}
     >
-      {mainContent}
+      <MaterialReactTable table={table} />
     </Box>
   );
 }

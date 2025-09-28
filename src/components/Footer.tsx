@@ -7,21 +7,23 @@ export default function Footer() {
   return (
     <Box
       sx={{
-        backgroundColor: "#00142825",
-        width: "100%",
+        backgroundColor: "transparemt",
+        width: "95%",
         height: "auto",
         color: "white",
-        padding: "2rem",
-        marginLeft: "auto",
-        marginRight: "auto",
-        marginTop: "auto",
+        padding: 4,
+        paddingTop: { xs: 6, sm: 6, md: 0, lg: 0 },
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Typography
           variant="h5"
           gutterBottom
-          sx={{ fontFamily: "Roboto", fontSize: "1rem", fontWeight: "700" }}
+          sx={{
+            fontFamily: "Roboto",
+            fontSize: { xs: "0.75rem", sm: "0.75rem", md: "1rem" },
+            fontWeight: "700",
+          }}
         >
           © 2025 Component Crew. All rights reserved.
         </Typography>

@@ -11,11 +11,11 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
-        width: "100%",
-        border: "3px solid black",
         display: "flex",
         flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "space-between",
+        minHeight: "100vh",
       }}
     >
       <Header />
