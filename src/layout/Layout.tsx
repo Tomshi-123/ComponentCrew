@@ -15,6 +15,7 @@ export default function Layout({ children }: LayoutProps) {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-between",
+        minHeight: "100vh",
       }}
     >
       <Header />

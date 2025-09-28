@@ -4,7 +4,6 @@ import "@fontsource/roboto/700.css";
 import "@fontsource/orbitron/400.css";
 import FileImport from "./FileImport";
 import { useTableData } from "../hooks/useTableData";
-import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
 export default function Header() {
   const { setTableData } = useTableData();
@@ -26,30 +25,31 @@ export default function Header() {
       sx={{
         backgroundColor: "#001428cb",
         width: "100%",
-        padding: "2rem",
+        py: "2rem",
+
         display: "flex",
-        flexDirection: { xs: "column", md: "column", lg: "row" },
-        justifyContent: { xs: "center", md: "space-between" },
-        alignItems: {
+        flexDirection: { xs: "column", sm: "column", md: "row", lg: "row" },
+        justifyContent: {
           xs: "center",
-          sm: "flex-start",
-          md: "flex-start",
-          lg: "center",
+          md: "space-between",
+          lg: "space-between",
         },
+        alignItems: { xs: "center", lg: "center" },
         position: "relative",
       }}
     >
       <Typography
-        variant="h3"
+        variant="h1"
         sx={{
+          mx: 3,
+          mb: 1,
           fontFamily: "orbitron",
-          fontSize: { xs: "2rem", md: "3rem" },
+          fontSize: { xs: "1.75rem", sm: "3rem", md: "3rem" },
           fontWeight: "300",
           color: "#00ffff",
           animation: `${textGlowKeyframes} 2s ease-in-out infinite alternate`,
           display: "flex",
           alignItems: "center",
-          mx: 2,
         }}
       >
         Space Mine Project
@@ -57,6 +57,7 @@ export default function Header() {
 
       <FileImport onDataLoaded={setTableData} />
 
+      {/* Glödande linje */}
       <Box
         component="div"
         sx={{

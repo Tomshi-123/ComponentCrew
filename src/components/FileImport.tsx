@@ -12,13 +12,10 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
   return (
     <Box
       sx={{
-        marginTop: "1rem",
         display: "flex",
         justifyContent: "flex-end",
-        alignItems: "flex-end",
-        paddingRight: "4rem",
-        marginLeft: "auto",
-        marginRight: { xs: "auto", sm: "0", md: "0" },
+        alignItems: "center",
+        mx: 3,
       }}
     >
       <input
@@ -30,18 +27,23 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
       />
       <label htmlFor="upload-input">
         <Button
-          variant="contained"
+          variant="outlined"
           component="span"
           sx={{
+            marginTop: "1rem",
             position: "relative",
             overflow: "hidden",
-            border: "1px solid #00ffff",
+            border: "2px solid #00ffff",
             borderRadius: "10px",
             color: "#00ffff",
             background: "transparent",
-            boxShadow: "none",
+            fontFamily: "orbitron",
+            fontSize: { xs: "0.75rem", sm: "0.9rem", md: "1rem" },
+            fontWeight: 500,
+            letterSpacing: "1px",
+            textTransform: "uppercase",
             zIndex: 1,
-            transition: "color 0.3s ease",
+            transition: "all 0.3s ease",
             "&::before": {
               content: '""',
               position: "absolute",
@@ -49,8 +51,7 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
               left: 0,
               width: "0%",
               height: "100%",
-              background:
-                "linear-gradient(90deg, rgba(0, 200, 130, 1) 0%, rgba(57, 255, 20, 0.7) 100%)", // mörk → ljus
+              background: "linear-gradient(90deg, #00ffff 0%, #00aaff 100%)",
               transition: "width 0.5s ease",
               zIndex: -1,
             },
@@ -59,12 +60,11 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
             },
             "&:hover": {
               color: "black",
-              boxShadow:
-                "0 0 10px rgba(57, 255, 20, 0.7), 0 0 20px rgba(57, 255, 20, 0.7), 0 0 40px rgba(57, 255, 20, 0.7)",
+              boxShadow: "0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff",
             },
           }}
         >
-          Ladda upp Excel
+          Upload Excel
         </Button>
       </label>
     </Box>

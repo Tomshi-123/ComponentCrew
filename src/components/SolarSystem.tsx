@@ -66,6 +66,7 @@ const SolarSystem: React.FC<SolarSystemProps> = React.memo(
     return (
       <Box
         sx={{
+          margin: "5rem",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -73,7 +74,7 @@ const SolarSystem: React.FC<SolarSystemProps> = React.memo(
           width: "100%",
           height: "100%",
           zIndex: 10,
-          backgroundColor: "#001428cb",
+          backgroundColor: "transparent",
           animation: isAnimating
             ? `${flyAwayKeyframes} ${durationMs}ms ease-out forwards`
             : "none",
