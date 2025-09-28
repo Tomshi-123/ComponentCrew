@@ -10,6 +10,7 @@ export default function Main() {
   return (
     <Box
       sx={{
+        border: "1px solid #00ffff",
         backgroundColor: "#0000008a",
         display: "flex",
         justifyContent: "center",
@@ -21,6 +22,7 @@ export default function Main() {
         borderRadius: "20px",
         height: "auto",
         padding: 2,
+        boxShadow: "0px 0px 15px 1px rgba(0, 255, 21, 0.6)",
       }}
     >
       {tableData.length > 0 ? (

@@ -139,7 +139,9 @@ const SolarSystem: React.FC<SolarSystemProps> = React.memo(
                 width: '100%',
                 height: '100%',
                 zIndex: 1, 
+
             }}
+
         >
             {generateStars(100)} 
         </Box>
