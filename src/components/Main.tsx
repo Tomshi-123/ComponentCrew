@@ -22,7 +22,7 @@ export default function Main() {
         borderRadius: "20px",
         height: "auto",
         padding: 2,
-        boxShadow: "0px 0px 15px 1px rgba(0, 255, 21, 0.6)",
+        boxShadow: "0px 0px 15px 1px rgba(2, 255, 251, 1)",
       }}
     >
       {tableData.length > 0 ? (
