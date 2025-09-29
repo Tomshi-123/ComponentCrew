@@ -10,17 +10,19 @@ export default function Main() {
   return (
     <Box
       sx={{
+        border: "1px solid #00ffff",
         backgroundColor: "#0000008a",
         display: "flex",
         justifyContent: "center",
-        alignItems: { md: "center", lg: "flex-start" },
+        alignItems: "center", 
         gap: { xs: 0, sm: 0, md: 4 },
         marginTop: 5,
-        flexDirection: { xs: "column", md: "column", lg: "row" }, // column på små skärmar, row på stora
+        flexDirection: { xs: "column", md: "column", lg: "row" }, 
         width: "95vw",
         borderRadius: "20px",
         height: "auto",
         padding: 2,
+        boxShadow: "0px 0px 15px 1px rgba(2, 255, 251, 1)",
       }}
     >
       {tableData.length > 0 ? (
@@ -31,6 +33,7 @@ export default function Main() {
               width: { xs: "100%", md: "100%", lg: "70%" },
               display: "flex",
               justifyContent: "center",
+              alignItems: "center", 
             }}
           >
             <DataTable />
@@ -42,6 +45,7 @@ export default function Main() {
               width: { xs: "100%", md: "100%", lg: "70%" },
               display: "flex",
               justifyContent: "center",
+              alignItems: "center", 
               marginTop: { xs: 3, md: 0 },
             }}
           >
