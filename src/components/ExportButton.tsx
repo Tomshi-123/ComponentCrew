@@ -1,17 +1,24 @@
 import { exportDataToPDF } from "../utils/pdfUtils";
-import { useState } from "react";
 import { Box, Button } from "@mui/material";
 import { useTableData } from "../hooks/useTableData";
 import Toast from "./Toast";
+import { useToast } from "../hooks/useToast";
 
 export default function ExportButton() {
   const { tableData } = useTableData();
-  const [showToast, setShowToast] = useState(false);
+  const {
+    showToast,
+    toastMessage,
+    toastType,
+    showSuccess,
+    showError,
+    hideToast,
+  } = useToast();
 
   const handleExport = () => {
     if (tableData.length === 0) {
       console.warn("No data available to export");
-      alert("No data to export!");
+      showError("No data to export!");
       return;
     }
 
@@ -24,19 +31,19 @@ export default function ExportButton() {
     ]);
 
     exportDataToPDF(headers, rows, "sheet-data.pdf");
-    setShowToast(true);
+    showSuccess("File succesfully exported!");
   };
 
   return (
     <>
       <Box
         sx={{
-          marginTop: 3, 
+          marginTop: 3,
           display: "flex",
           justifyContent: { xs: "center", md: "flex-end" },
-          alignItems: "center", 
-          paddingRight: { xs: 0, md: 0 }, 
-          width: "100%", 
+          alignItems: "center",
+          paddingRight: { xs: 0, md: 0 },
+          width: "100%",
         }}
       >
         <Button
@@ -82,10 +89,7 @@ export default function ExportButton() {
       </Box>
 
       {showToast && (
-        <Toast
-          message="File exported successfully!"
-          onClose={() => setShowToast(false)}
-        />
+        <Toast message={toastMessage} onClose={hideToast} type={toastType} />
       )}
     </>
   );
