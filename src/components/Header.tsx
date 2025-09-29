@@ -24,38 +24,44 @@ export default function Header() {
     <Box
       sx={{
         backgroundColor: "#001428cb",
-        width: "100%",
+        width: "100vw",
         py: "2rem",
+        position: "relative",
 
         display: "flex",
-        flexDirection: { xs: "column", sm: "column", md: "row", lg: "row" },
-        justifyContent: {
-          xs: "center",
-          md: "space-between",
-          lg: "space-between",
-        },
-        alignItems: { xs: "center", lg: "center" },
-        position: "relative",
+        justifyContent: "center",
       }}
     >
-      <Typography
-        variant="h1"
+      <Box
         sx={{
-          mx: 3,
-          mb: 1,
-          fontFamily: "orbitron",
-          fontSize: { xs: "1.75rem", sm: "3rem", md: "3rem" },
-          fontWeight: "300",
-          color: "#00ffff",
-          animation: `${textGlowKeyframes} 2s ease-in-out infinite alternate`,
+          width: { xs: "100vw", md: "93vw" },
+
           display: "flex",
-          alignItems: "center",
+          flexDirection: { xs: "column", sm: "column", md: "row", lg: "row" },
+          justifyContent: {
+            xs: "center",
+            md: "space-between",
+            lg: "space-between",
+          },
+          alignItems: { xs: "center", lg: "center" },
         }}
       >
-        Space Mine Project
-      </Typography>
+        <Typography
+          variant="h1"
+          sx={{
+            mb: 1,
+            fontFamily: "orbitron",
+            fontSize: { xs: "1.75rem", sm: "3rem", md: "3rem" },
+            fontWeight: "300",
+            color: "#00ffff",
+            animation: `${textGlowKeyframes} 2s ease-in-out infinite alternate`,
+          }}
+        >
+          Space Mine Project
+        </Typography>
 
-      <FileImport onDataLoaded={setTableData} />
+        <FileImport onDataLoaded={setTableData} />
+      </Box>
 
       {/* Glödande linje */}
       <Box

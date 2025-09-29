@@ -50,13 +50,13 @@ export default function RechartPieChart() {
         width: "100%",
 
         height: { xs: 350, sm: 400, md: 450, lg: 500 }, // flexibel höjd
-        borderRadius: "10px",
+        borderRadius: "20px",
         backgroundColor: "black",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         border: "4px solid #00ffff",
-        py: 4,
+        py: 4.7,
       }}
     >
       <ResponsiveContainer width="100%" height="100%">
