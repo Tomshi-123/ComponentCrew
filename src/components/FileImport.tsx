@@ -9,7 +9,7 @@ type FileImportProps = {
 };
 
 export default function FileImport({ onDataLoaded }: FileImportProps) {
-  //  const { handleFileUpload } = useExcelData(onDataLoaded);
+  //  const { handleFileUpload } = useExcelData(onDataLoaded); kan tas bort
   const {
     showToast,
     toastMessage,
