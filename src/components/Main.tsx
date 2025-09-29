@@ -14,10 +14,10 @@ export default function Main() {
         backgroundColor: "#0000008a",
         display: "flex",
         justifyContent: "center",
-        alignItems: { md: "center", lg: "flex-start" },
+        alignItems: "center", 
         gap: { xs: 0, sm: 0, md: 4 },
         marginTop: 5,
-        flexDirection: { xs: "column", md: "column", lg: "row" }, // column på små skärmar, row på stora
+        flexDirection: { xs: "column", md: "column", lg: "row" }, 
         width: "95vw",
         borderRadius: "20px",
         height: "auto",
@@ -33,6 +33,7 @@ export default function Main() {
               width: { xs: "100%", md: "100%", lg: "70%" },
               display: "flex",
               justifyContent: "center",
+              alignItems: "center", 
             }}
           >
             <DataTable />
@@ -44,6 +45,7 @@ export default function Main() {
               width: { xs: "100%", md: "100%", lg: "70%" },
               display: "flex",
               justifyContent: "center",
+              alignItems: "center", 
               marginTop: { xs: 3, md: 0 },
             }}
           >
