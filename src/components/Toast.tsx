@@ -1,12 +1,18 @@
 import { useEffect } from "react";
 
-interface TaostProps {
+interface ToastProps {
   message: string;
   onClose: () => void;
   duration?: number; // ms
+  type?: "success" | "error";
 }
 
-const Toast = ({ message, onClose, duration = 4000 }: TaostProps) => {
+const Toast = ({
+  message,
+  onClose,
+  duration = 4000,
+  type = "success",
+}: ToastProps) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
@@ -15,13 +21,15 @@ const Toast = ({ message, onClose, duration = 4000 }: TaostProps) => {
     return () => clearTimeout(timer);
   }, [onClose, duration]);
 
+  const backgroundColor = type === "error" ? "#a11313ff" : "#333";
+
   return (
     <div
       style={{
         position: "fixed",
         bottom: "20px",
         right: "20px",
-        backgroundColor: "#333",
+        backgroundColor,
         color: "#fff",
         padding: "12px 20px",
         borderRadius: "8px",
