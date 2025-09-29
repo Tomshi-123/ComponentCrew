@@ -31,16 +31,18 @@ export default function ExportButton() {
     <>
       <Box
         sx={{
-          marginTop: 1,
+          marginTop: 3, 
           display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "flex-end",
-          paddingRight: 2,
+          justifyContent: { xs: "center", md: "flex-end" },
+          alignItems: "center", 
+          paddingRight: { xs: 0, md: 0 }, 
+          width: "100%", 
         }}
       >
         <Button
           variant="outlined"
           component="span"
+          onClick={handleExport}
           sx={{
             position: "relative",
             overflow: "hidden",
@@ -74,7 +76,6 @@ export default function ExportButton() {
               boxShadow: "0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff",
             },
           }}
-          onClick={handleExport}
         >
           Export to PDF
         </Button>
