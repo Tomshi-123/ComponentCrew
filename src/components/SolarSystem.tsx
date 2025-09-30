@@ -15,7 +15,6 @@ const planetRotationKeyframes = keyframes`
   }
 `;
 
-
 const planet1OrbitKeyframes = keyframes`
   from {
     transform: rotate(0deg) translateX(65px) rotate(0deg);
@@ -60,7 +59,6 @@ const flyAwayKeyframes = keyframes`
   }
 `;
 
-
 const starTwinkleKeyframes = keyframes`
     0%, 100% { opacity: 0.8; }
     50% { opacity: 0.4; }
@@ -78,7 +76,7 @@ const SYSTEM_CORE_SIZE = "500px";
 const SolarSystem: React.FC<SolarSystemProps> = React.memo(
   ({ isAnimating, text, durationMs }) => {
     
-   
+    
     const generateStars = (count: number) => {
         const stars = [];
         for (let i = 0; i < count; i++) {
@@ -118,7 +116,7 @@ const SolarSystem: React.FC<SolarSystemProps> = React.memo(
           overflow: "hidden",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: { xs: "flex-start", md: "center" }, 
           alignItems: "center",
           backgroundColor: "rgba(0, 0, 0, 0)", 
           minHeight: 'auto', 
@@ -150,16 +148,13 @@ const SolarSystem: React.FC<SolarSystemProps> = React.memo(
         <Box
           sx={{
             position: "relative",
-            width: SYSTEM_CORE_SIZE, 
-            height: SYSTEM_CORE_SIZE, 
+            width: { xs: "350px", md: SYSTEM_CORE_SIZE }, 
+            height: { xs: "350px", md: SYSTEM_CORE_SIZE }, 
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             zIndex: 5, 
-            transform: {
-                xs: 'scale(0.7) translateY(-30px)', // Krymper till 70% och centrerar
-                md: 'scale(1) translateY(-20px)',   // Full storlek på desktop
-            }
+            transform: 'translateY(-20px)' 
           }}
         >
           {/* Solen */}
@@ -180,7 +175,7 @@ const SolarSystem: React.FC<SolarSystemProps> = React.memo(
               animation: `${planetRotationKeyframes} 30s linear infinite`,
             }}
           >
-            {/* Planet 1 - */}
+            {/* Planet 1 */}
             <Box sx={{ 
                 position: "absolute", top: "50%", left: "50%", 
                 width: { xs: "6px", md: "10px" }, 
@@ -193,7 +188,7 @@ const SolarSystem: React.FC<SolarSystemProps> = React.memo(
                 animation: `${planet1OrbitKeyframes} 5s linear infinite` 
             }} />
             
-            {/* Planet 2  */}
+            {/* Planet 2 */}
             <Box sx={{ 
                 position: "absolute", top: "50%", left: "50%", 
                 width: { xs: "10px", md: "15px" }, 
@@ -215,7 +210,7 @@ const SolarSystem: React.FC<SolarSystemProps> = React.memo(
                 backgroundColor: "#ff00ff", 
                 boxShadow: "0 0 6px #ff00ff, 0 0 12px #ff00ff", 
                 marginTop: { xs: "-4px", md: "-6px" }, 
-                marginLeft: { xs: "-4px", md: "-6px" },
+                marginLeft: { xs: "-4px", md: "-6px" }, 
                 animation: `${planet3OrbitKeyframes} 12s linear infinite` 
             }} />
             
@@ -228,7 +223,7 @@ const SolarSystem: React.FC<SolarSystemProps> = React.memo(
                 backgroundColor: "#ffa500", 
                 boxShadow: "0 0 9px #ffa500, 0 0 18px #ffa500", 
                 marginTop: { xs: "-6px", md: "-9px" }, 
-                marginLeft: { xs: "-6px", md: "-9px" },  
+                marginLeft: { xs: "-6px", md: "-9px" }, 
                 animation: `${planet4OrbitKeyframes} 16s linear infinite` 
             }} />
           </Box>
