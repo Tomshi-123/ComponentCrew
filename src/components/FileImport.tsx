@@ -9,7 +9,6 @@ type FileImportProps = {
 };
 
 export default function FileImport({ onDataLoaded }: FileImportProps) {
-  //  const { handleFileUpload } = useExcelData(onDataLoaded); kan tas bort
   const {
     showToast,
     toastMessage,
@@ -37,7 +36,6 @@ export default function FileImport({ onDataLoaded }: FileImportProps) {
           display: "flex",
           justifyContent: "flex-end",
           alignItems: "center",
-          mx: 3,
         }}
       >
         <input

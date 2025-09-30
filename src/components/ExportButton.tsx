@@ -38,12 +38,11 @@ export default function ExportButton() {
     <>
       <Box
         sx={{
+          width: { xs: "100%", sm: "95%", md: "100%" },
           marginTop: 3,
           display: "flex",
-          justifyContent: { xs: "center", md: "flex-end" },
+          justifyContent: { xs: "center", sm: "flex-end" },
           alignItems: "center",
-          paddingRight: { xs: 0, md: 0 },
-          width: "100%",
         }}
       >
         <Button
