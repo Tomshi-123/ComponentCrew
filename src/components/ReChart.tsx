@@ -45,20 +45,26 @@ export default function RechartPieChart() {
   }, [tableData]);
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-
-        height: { xs: 350, sm: 400, md: 450, lg: 500 }, // flexibel höjd
-        borderRadius: "20px",
-        backgroundColor: "black",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        border: "4px solid #00ffff",
-        py: 4.7,
-      }}
-    >
+  <Box
+    sx={{
+      width: "100%",
+      height: { xs: 350, sm: 400, md: 450, lg: 500 },
+      borderRadius: "20px",
+      backgroundColor: "black",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      border: "1px solid #45ffaeff",
+      
+      boxShadow: `
+        0 0 10px #45bbff9d,       /* Liten och skarp glöd */
+        0 0 20px #45ffaedc,       /* Medelstor glöd */
+        0 0 40px rgba(162, 0, 255, 1) /* Stor och diffus glöd */
+      `,
+      
+      py: 4.7,
+    }}
+  >
       <ResponsiveContainer width="100%" height="100%">
         <PieChart width={400} height={400}>
           <Pie

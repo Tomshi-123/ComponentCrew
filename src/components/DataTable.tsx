@@ -20,7 +20,8 @@ export default function DataTable() {
           size: 150,
         }))
       : [];
-
+  
+  const NEON_PURPLE ="#8206ffff";
   const NEON_BLUE = "#00ffff";
   const NEON_GREEN = "#45ffaeff";
 
@@ -46,17 +47,19 @@ export default function DataTable() {
         backgroundColor: "black",
         boxShadow: "none",
         color: NEON_BLUE,
-        border: `3px solid ${NEON_BLUE}`,
+        // Vi tar bort den inre box-shadow och behåller en lättare border
+        border: `1px solid ${NEON_PURPLE}`, 
         borderRadius: "10px",
         width: "100%",
         height: "100%",
         overflow: "hidden",
+        position: "relative",
       },
     },
 
     muiTopToolbarProps: {
       sx: {
-        border: `1px solid ${NEON_BLUE}`,
+        border: `1px solid ${NEON_PURPLE}`,
         backgroundColor: "black",
         "& .MuiSvgIcon-root": { color: NEON_BLUE },
       },
@@ -91,11 +94,11 @@ export default function DataTable() {
       sx: {
         backgroundColor: "black",
         flex: 1,
-        minHeight: 0, // så att flexbox shrink funkar
-        overflow: "auto", // både x och y scroll vid behov
+        minHeight: 0,
+        overflow: "auto",
         "&::-webkit-scrollbar": { width: "8px", height: "8px" },
         "&::-webkit-scrollbar-thumb": {
-          backgroundColor: "white",
+          backgroundColor: NEON_PURPLE,
           borderRadius: "4px",
         },
       },
@@ -108,7 +111,7 @@ export default function DataTable() {
         color: NEON_BLUE,
         fontFamily: "orbitron",
         fontSize: "1rem",
-        borderBottom: `3px solid ${NEON_BLUE}`,
+        borderBottom: `3px solid ${NEON_PURPLE}`,
         backgroundColor: "black",
         "& .MuiSvgIcon-root": { color: NEON_BLUE },
       },
@@ -117,7 +120,7 @@ export default function DataTable() {
     muiTableBodyRowProps: {
       sx: {
         backgroundColor: "black",
-        "&:hover": { backgroundColor: `${NEON_BLUE}15` },
+        "&:hover": { backgroundColor: `${NEON_PURPLE}15` },
       },
     },
 
@@ -126,7 +129,7 @@ export default function DataTable() {
         color: NEON_GREEN,
         fontFamily: "monospace",
         fontSize: "0.95rem",
-        borderBottom: `1px solid rgba(17, 168, 250, 0.34)`,
+        borderBottom: `1px solid ${NEON_PURPLE}30`,
         backgroundColor: "black",
         "& .MuiSvgIcon-root": { color: NEON_BLUE },
       },
@@ -138,12 +141,13 @@ export default function DataTable() {
     muiBottomToolbarProps: {
       sx: {
         backgroundColor: "black",
-        "& .MuiTablePagination-caption": { color: "white !important" },
-        "& .MuiTablePagination-selectLabel": { color: "white !important" },
+        borderTop: `1px solid ${NEON_PURPLE}`,
+        "& .MuiTablePagination-caption": { color: NEON_BLUE + " !important" },
+        "& .MuiTablePagination-selectLabel": { color: NEON_BLUE + " !important" },
         "& .MuiTablePagination-displayedRows": {
           color: NEON_BLUE + " !important",
         },
-        "& .MuiTypography-root": { color: "white" },
+        "& .MuiTypography-root": { color: NEON_BLUE },
         "& .MuiSelect-select": { color: NEON_BLUE },
         "& .MuiSvgIcon-root": { color: NEON_BLUE },
         "& .MuiMenu-paper": {
@@ -158,13 +162,22 @@ export default function DataTable() {
     <Box
       sx={{
         width: "100%",
-        height: "100%", // Tabell tar upp 80% av viewport height
-        borderRadius: "20px",
+        height: "100%",
+        borderRadius: "10px",
         padding: "1rem",
-        border: `3px solid ${NEON_BLUE}`,
+        
+        // ---  BOX-SHADOW  ---
+        border: `1px solid ${NEON_PURPLE}`, 
+        boxShadow: `
+          0 0 11px 5px rgba(131, 6, 255, 0.9), 
+          0 0 15px 8px rgba(0, 255, 140, 0.2), 
+          0 0 17px 10px rgba(0, 255, 68, 0.6)
+        `,
+
+
         display: "flex",
         flexDirection: "column",
-        overflow: "hidden", // håller tabellen inom boxen
+        overflow: "hidden",
       }}
     >
       <MaterialReactTable table={table} />
