@@ -7,27 +7,43 @@ import SolarSystem from "./SolarSystem";
 export default function Main() {
   const { tableData } = useTableData();
 
+
+  const NEON_BLUE_GLOW = "#00FFFF"; 
+
+
   return (
     <Box
       sx={{
-        border: "1px solid #00ffff",
-        backgroundColor: "#0000008a",
         display: "flex",
         justifyContent: "center",
         alignItems: { xs: "center", md: "center", lg: "flex-start" },
         gap: { xs: 0, sm: 0, md: 4 },
         marginTop: 5,
-        flexDirection: { xs: "column", md: "column", lg: "row" }, // column på små skärmar, row på stora
+        flexDirection: { xs: "column", md: "column", lg: "row" },
         width: { xs: "100vw", md: "90vw" },
-        borderRadius: { xs: "0", sm: "20px" },
         height: "auto",
         padding: 2,
-        boxShadow: "0px 0px 15px 1px rgba(0, 255, 255, 1)",
+        backgroundColor: "#0000008a", 
+        borderRadius: { xs: "0", sm: "20px" }, 
+        border: "none", 
+        
+
+        boxShadow: `
+          /* Primär glöd (Neon Blå) - Stark kärna */
+          0 0 15px 5px ${NEON_BLUE_GLOW}, 
+          
+          /* Sekundär glöd (Neon Lila/Magenta) - Bred spridning */
+          0 0 40px 10px rgba(0, 255, 13, 0.73), 
+          
+          /* Tertiär glöd (Neon Grön) - Mycket bred och diffus aura */
+          0 0 40px 15px rgba(188, 37, 226, 0.81) 
+        `,
+        // ------------------------------
       }}
     >
       {tableData.length > 0 ? (
         <>
-          {/* Tabell */}
+          {/* ... ditt innehåll ... */}
           <Box
             sx={{
               width: { xs: "95%", md: "95%", lg: "60%" },
@@ -38,7 +54,6 @@ export default function Main() {
             <DataTable />
           </Box>
 
-          {/* ReChart */}
           <Box
             sx={{
               width: { xs: "95%", md: "95%", lg: "40%" },
