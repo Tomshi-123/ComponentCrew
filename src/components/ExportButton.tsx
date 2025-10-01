@@ -31,11 +31,11 @@ export default function ExportButton() {
     <>
       <Box
         sx={{
-          marginTop: 1,
+          marginTop: 4,
           display: "flex",
           justifyContent: "flex-end",
           alignItems: "flex-end",
-          paddingRight: 2,
+          paddingRight: 1,
         }}
       >
         <Button
