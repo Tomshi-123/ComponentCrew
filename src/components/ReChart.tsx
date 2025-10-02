@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { useTableData } from "../hooks/useTableData";
 import "@fontsource/orbitron/400.css";
+import { NEON_GREEN } from "../theme/ColorTheme";
 
 const mineralColors: Record<string, string> = {
   Aetherium: "rgba(239, 115, 255, 1)",
@@ -45,26 +46,26 @@ export default function RechartPieChart() {
   }, [tableData]);
 
   return (
-  <Box
-    sx={{
-      width: "100%",
-      height: { xs: 350, sm: 400, md: 450, lg: 500 },
-      borderRadius: "20px",
-      backgroundColor: "black",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      border: "1px solid #45ffaeff",
-      
-      boxShadow: `
-        0 0 10px #45bbff9d,       /* Liten och skarp glöd */
-        0 0 20px #45ffaedc,       /* Medelstor glöd */
-        0 0 40px rgba(162, 0, 255, 1) /* Stor och diffus glöd */
+    <Box
+      sx={{
+        width: "100%",
+        height: { xs: 350, sm: 400, md: 450, lg: 500 },
+        borderRadius: "20px",
+        backgroundColor: "black",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        border: `1px solid ${NEON_GREEN}`,
+
+        boxShadow: `
+        0 0 18px ${NEON_GREEN},    
+        0 0 8px ${NEON_GREEN},   
+        0 0 6px ${NEON_GREEN}  
       `,
-      
-      py: 4.7,
-    }}
-  >
+
+        py: 4.3,
+      }}
+    >
       <ResponsiveContainer width="100%" height="100%">
         <PieChart width={400} height={400}>
           <Pie
