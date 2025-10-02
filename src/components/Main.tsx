@@ -3,13 +3,9 @@ import DataTable from "./DataTable";
 import ReChart from "./ReChart";
 import { useTableData } from "../hooks/useTableData";
 import SolarSystem from "./SolarSystem";
-
+import { GLOW_PURPLE, NEON_BLUE, NEON_GREEN } from "../theme/ColorTheme";
 export default function Main() {
   const { tableData } = useTableData();
-
-
-  const NEON_BLUE_GLOW = "#00FFFF"; 
-
 
   return (
     <Box
@@ -23,20 +19,14 @@ export default function Main() {
         width: { xs: "100vw", md: "90vw" },
         height: "auto",
         padding: 2,
-        backgroundColor: "#0000008a", 
-        borderRadius: { xs: "0", sm: "20px" }, 
-        border: "none", 
-        
+        backgroundColor: "#0000008a",
+        borderRadius: { xs: "0", sm: "20px" },
+        border: "none",
 
         boxShadow: `
-          /* Primär glöd (Neon Blå) - Stark kärna */
-          0 0 15px 5px ${NEON_BLUE_GLOW}, 
-          
-          /* Sekundär glöd (Neon Lila/Magenta) - Bred spridning */
-          0 0 40px 10px rgba(0, 255, 13, 0.73), 
-          
-          /* Tertiär glöd (Neon Grön) - Mycket bred och diffus aura */
-          0 0 40px 15px rgba(188, 37, 226, 0.81) 
+        0 0 15px 8px ${NEON_GREEN},
+        0 0 10px 6px ${GLOW_PURPLE},
+        0 0 5px 4px ${NEON_BLUE}
         `,
         // ------------------------------
       }}
