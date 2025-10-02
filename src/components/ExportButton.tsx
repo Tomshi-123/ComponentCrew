@@ -1,8 +1,8 @@
-import { exportDataToPDF } from "../utils/pdfUtils";
 import { Box, Button } from "@mui/material";
 import { useTableData } from "../hooks/useTableData";
 import Toast from "./Toast";
 import { useToast } from "../hooks/useToast";
+import { handleExportDataToPDF } from "../utils/exportHandlers";
 
 export default function ExportButton() {
   const { tableData } = useTableData();
@@ -16,22 +16,7 @@ export default function ExportButton() {
   } = useToast();
 
   const handleExport = () => {
-    if (tableData.length === 0) {
-      console.warn("No data available to export");
-      showError("No data to export!");
-      return;
-    }
-
-    const headers = ["Astronaut", "Mineral", "Amount", "Planet"];
-    const rows = tableData.map((row) => [
-      row.astronaut ?? "",
-      row.mineral ?? "",
-      String(row.amount ?? ""),
-      row.planet ?? "",
-    ]);
-
-    exportDataToPDF(headers, rows, "sheet-data.pdf");
-    showSuccess("File succesfully exported!");
+    handleExportDataToPDF(tableData, showSuccess, showError);
   };
 
   return (
