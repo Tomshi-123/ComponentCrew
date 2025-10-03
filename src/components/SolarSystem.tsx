@@ -15,7 +15,6 @@ const planetRotationKeyframes = keyframes`
   }
 `;
 
-
 const planet1OrbitKeyframes = keyframes`
   from {
     transform: rotate(0deg) translateX(65px) rotate(0deg);
@@ -60,7 +59,6 @@ const flyAwayKeyframes = keyframes`
   }
 `;
 
-
 const starTwinkleKeyframes = keyframes`
     0%, 100% { opacity: 0.8; }
     50% { opacity: 0.4; }
@@ -78,7 +76,7 @@ const SYSTEM_CORE_SIZE = "500px";
 const SolarSystem: React.FC<SolarSystemProps> = React.memo(
   ({ isAnimating, text, durationMs }) => {
     
-   
+    
     const generateStars = (count: number) => {
         const stars = [];
         for (let i = 0; i < count; i++) {
@@ -118,7 +116,7 @@ const SolarSystem: React.FC<SolarSystemProps> = React.memo(
           overflow: "hidden",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: { xs: "flex-start", md: "center" }, 
           alignItems: "center",
           backgroundColor: "rgba(0, 0, 0, 0)", 
           minHeight: 'auto', 
@@ -150,8 +148,8 @@ const SolarSystem: React.FC<SolarSystemProps> = React.memo(
         <Box
           sx={{
             position: "relative",
-            width: SYSTEM_CORE_SIZE, 
-            height: SYSTEM_CORE_SIZE, 
+            width: { xs: "350px", md: SYSTEM_CORE_SIZE }, 
+            height: { xs: "350px", md: SYSTEM_CORE_SIZE }, 
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -162,8 +160,8 @@ const SolarSystem: React.FC<SolarSystemProps> = React.memo(
           {/* Solen */}
           <Box
             sx={{
-              width: "50px", 
-              height: "50px",
+              width: { xs: "30px", md: "50px" }, 
+              height: { xs: "30px", md: "50px" },
               borderRadius: "50%",
               backgroundColor: "#ffeb3b", 
               boxShadow: "0 0 15px #ffeb3b, 0 0 30px #ffeb3b, 0 0 45px #ffeb3b", 
@@ -177,47 +175,55 @@ const SolarSystem: React.FC<SolarSystemProps> = React.memo(
               animation: `${planetRotationKeyframes} 30s linear infinite`,
             }}
           >
-            {/* Planet 1 - */}
+            {/* Planet 1 */}
             <Box sx={{ 
                 position: "absolute", top: "50%", left: "50%", 
-                width: "10px", height: "10px", // Större planet
+                width: { xs: "6px", md: "10px" }, 
+                height: { xs: "6px", md: "10px" }, 
                 borderRadius: "50%", 
-                backgroundColor: "#00ff00", // Neon Grön
-                boxShadow: "0 0 5px #00ff00, 0 0 10px #00ff00", // Glöd
-                marginTop: "-5px", marginLeft: "-5px", 
+                backgroundColor: "#00ff00", 
+                boxShadow: "0 0 5px #00ff00, 0 0 10px #00ff00", 
+                marginTop: { xs: "-3px", md: "-5px" }, 
+                marginLeft: { xs: "-3px", md: "-5px" }, 
                 animation: `${planet1OrbitKeyframes} 5s linear infinite` 
             }} />
             
-            {/* Planet 2  */}
+            {/* Planet 2 */}
             <Box sx={{ 
                 position: "absolute", top: "50%", left: "50%", 
-                width: "15px", height: "15px", 
+                width: { xs: "10px", md: "15px" }, 
+                height: { xs: "10px", md: "15px" }, 
                 borderRadius: "50%", 
                 backgroundColor: "#00ffff", 
                 boxShadow: "0 0 8px #00ffff, 0 0 16px #00ffff", 
-                marginTop: "-7.5px", marginLeft: "-7.5px", 
+                marginTop: { xs: "-5px", md: "-7.5px" }, 
+                marginLeft: { xs: "-5px", md: "-7.5px" }, 
                 animation: `${planet2OrbitKeyframes} 8s linear infinite` 
             }} />
             
             {/* Planet 3 */}
             <Box sx={{ 
                 position: "absolute", top: "50%", left: "50%", 
-                width: "12px", height: "12px",
+                width: { xs: "8px", md: "12px" }, 
+                height: { xs: "8px", md: "12px" },
                 borderRadius: "50%", 
                 backgroundColor: "#ff00ff", 
                 boxShadow: "0 0 6px #ff00ff, 0 0 12px #ff00ff", 
-                marginTop: "-6px", marginLeft: "-6px", 
+                marginTop: { xs: "-4px", md: "-6px" }, 
+                marginLeft: { xs: "-4px", md: "-6px" }, 
                 animation: `${planet3OrbitKeyframes} 12s linear infinite` 
             }} />
             
             {/* Planet 4 */}
             <Box sx={{ 
                 position: "absolute", top: "50%", left: "50%", 
-                width: "18px", height: "18px", 
+                width: { xs: "12px", md: "18px" }, 
+                height: { xs: "12px", md: "18px" }, 
                 borderRadius: "50%", 
                 backgroundColor: "#ffa500", 
                 boxShadow: "0 0 9px #ffa500, 0 0 18px #ffa500", 
-                marginTop: "-9px", marginLeft: "-9px", 
+                marginTop: { xs: "-6px", md: "-9px" }, 
+                marginLeft: { xs: "-6px", md: "-9px" }, 
                 animation: `${planet4OrbitKeyframes} 16s linear infinite` 
             }} />
           </Box>
@@ -232,7 +238,7 @@ const SolarSystem: React.FC<SolarSystemProps> = React.memo(
             zIndex: 10, 
             color: "#00ffff", 
             fontWeight: 700, 
-            fontSize: "1.4rem", 
+            fontSize: { xs: "1rem", md: "1.4rem" }, 
             textShadow: "0 0 5px #00ffff, 0 0 10px #00ffff", 
             bottom: '1rem', 
             left: 0,

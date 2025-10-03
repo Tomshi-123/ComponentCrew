@@ -2,7 +2,10 @@ import { useState } from "react";
 import type { TableData } from "../types/Types";
 import { parseExcelFile } from "../utils/excelUtils";
 
-export function useExcelData(onDataLoaded?: (data: TableData) => void) {
+export function useExcelData(
+  onDataLoaded?: (data: TableData) => void,
+  onError?: (error: Error) => void
+) {
   // En custom Hook för logik kring Excel-data
   // läsa/parsa/ladda/state hantering
 
@@ -20,6 +23,7 @@ export function useExcelData(onDataLoaded?: (data: TableData) => void) {
       onDataLoaded?.(parsedData);
     } catch (error) {
       console.error("Fel vid uppladdning av Excel:", error);
+      onError?.(error as Error);
     }
   };
 

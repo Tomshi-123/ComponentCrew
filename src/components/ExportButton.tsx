@@ -1,46 +1,39 @@
-import { exportDataToPDF } from "../utils/pdfUtils";
-import { useState } from "react";
 import { Box, Button } from "@mui/material";
 import { useTableData } from "../hooks/useTableData";
 import Toast from "./Toast";
+import { useToast } from "../hooks/useToast";
+import { handleExportDataToPDF } from "../utils/exportHandlers";
 
 export default function ExportButton() {
   const { tableData } = useTableData();
-  const [showToast, setShowToast] = useState(false);
+  const {
+    showToast,
+    toastMessage,
+    toastType,
+    showSuccess,
+    showError,
+    hideToast,
+  } = useToast();
 
   const handleExport = () => {
-    if (tableData.length === 0) {
-      console.warn("No data available to export");
-      alert("No data to export!");
-      return;
-    }
-
-    const headers = ["Astronaut", "Mineral", "Amount", "Planet"];
-    const rows = tableData.map((row) => [
-      row.astronaut ?? "",
-      row.mineral ?? "",
-      String(row.amount ?? ""),
-      row.planet ?? "",
-    ]);
-
-    exportDataToPDF(headers, rows, "sheet-data.pdf");
-    setShowToast(true);
+    handleExportDataToPDF(tableData, showSuccess, showError);
   };
 
   return (
     <>
       <Box
         sx={{
-          marginTop: 1,
+          width: { xs: "100%", sm: "95%", md: "100%" },
+          marginTop: 3,
           display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "flex-end",
-          paddingRight: 2,
+          justifyContent: { xs: "center", sm: "flex-end" },
+          alignItems: "center",
         }}
       >
         <Button
           variant="outlined"
           component="span"
+          onClick={handleExport}
           sx={{
             position: "relative",
             overflow: "hidden",
@@ -74,17 +67,13 @@ export default function ExportButton() {
               boxShadow: "0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff",
             },
           }}
-          onClick={handleExport}
         >
           Export to PDF
         </Button>
       </Box>
 
       {showToast && (
-        <Toast
-          message="File exported successfully!"
-          onClose={() => setShowToast(false)}
-        />
+        <Toast message={toastMessage} onClose={hideToast} type={toastType} />
       )}
     </>
   );
